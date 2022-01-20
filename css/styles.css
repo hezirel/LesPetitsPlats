@@ -1,0 +1,10 @@
+.logo {
+    display: block;
+    margin: auto;
+    padding-top: 5%;
+}
+
+.searchBar {
+    margin: auto;
+    justify-content: center;
+}

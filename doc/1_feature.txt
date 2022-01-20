@@ -1,0 +1,69 @@
+Fiche d’investigation fonctionnalité #1
+
+Fiche d’investigation de fonctionnalité
+Fonctionnalité : ​Login / Sign Up
+
+Fonctionnalité #1
+
+Problématique : ​Afin de pouvoir retenir un maximum d’utilisateurs, nous cherchons à avoir une séquence d’inscription
+/ connexion la plus fluide possible.
+
+Option 1 : Classic Login Workflow (cf Figure)
+Dans cette option, nous avons une page dédiée pour l'inscription et une autre pour la connexion. L’avantage du
+système c’est qu’il est classique, on a rapidement accès au formulaire d’inscription ou de connexion. Le principal
+inconvénient : le processus peut ne pas être optimisé en particulier lors de l’inscription
+Avantages
+​⊕ Accès direct au formulaire
+​ ​⊕ Possibilité de maintenir la connexion via un cookie
+
+Inconvénients
+⊖ Usage systématique d’un formulaire
+⊖ Nécessité d’envoyer un e-mail de confirmation
+
+Nombre de champs minimum à remplir à l’inscription : 5
+Nom, prénom, e-mail, mot de passe, confirmation
+Nombre de champs minimum à remplir durant le login : 2
+
+Option 2 : Approche “Email First’ et usage de Google Identity Toolkit
+Dans cette option, on demande dans un premier temps à l'utilisateur d’entrer son e-mail. Ceci nous permet de proposer
+à l'utilisateur l’interface qui lui convient. De plus, en proposant la connexion sociale (Google, Facebook, etc.)
+l’utilisateur n’a potentiellement plus besoin de remplir de formulaire (seulement si c’est sa préférence)
+Avantages
+​⊕ Page personnalisée selon le besoin
+​ ​⊕ Possibilité de maintenir la connexion via un cookie
+⊕ Si authentification sociale pas de besoin de mail de
+confirmation
+⊕ Accès au formulaire si c’est préféré par l’utilisateur
+⊕ Processus rapide et sécurisé utilisé sur de nombreux
+sites
+
+Inconvénients
+⊖ S’assurer périodiquement du bon fonctionnement de
+la liaison avec les réseaux sociaux
+
+Nombre de champs minimum à remplir à l’inscription: 1
+e-mail
+Nombre de champs minimum à remplir durant le login: 1
+
+Solution retenue :
+Nous avons donc retenu l'approche “Email First” avec usage de Google Identity Toolkit. La raison est que le flow de
+login et d’inscription sont plus naturels, n’obligeant l’utilisateur qu’à entrer son e-mail. Le reste des choix ne dépendent
+que de lui. Il pourra choisir entre une authentification rapide par provider tier, ou une plus complète via notre formulaire.
+
+1
+
+Fiche d’investigation fonctionnalité #1
+
+Annexes
+
+Figure 1 - Diagramme d’activité Classic login Workflow
+
+2
+
+Fiche d’investigation fonctionnalité #1
+
+Figure 2 : Approche “Email First’ et usage de Google Identity Toolkit
+
+3
+
+

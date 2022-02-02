@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,36 @@
     <title>Les Petits Plats</title>
     <img src="img/logo.svg" alt="Logo les Petits Plats" class="logo">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/36102fc3ba.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <input type="search" class="searchBar" name="search" placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
+    <div class="searchSection">
+        <input type="search" class="searchBar" name="search_input"
+            placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
+        <div class="tagsSelected"></div>
+    </div>
+    <div class="tagsSection">
+        <form class="tagsFilterIng">
+            <input class="tagSearchIng" placeholder="Ingrédient" type="search">
+            <button class="research__fields__form__submit ingredient__button" type="button">
+                <i class="far fa-chevron-down ingredient__chevron"></i>
+            </button>
+        </form>
+        <form class="tagsFilterApp">
+            <input class="tagSearchApp" placeholder="Appareil" type="search">
+            <button class="research__fields__form__submit apparatus__button" type="button">
+                <i class="far fa-chevron-down apparatus__chevron"></i>
+            </button>
+        </form>
+        <form class="tagsFilterTool">
+            <input class="tagSearchTool" placeholder="Ustensiles" type="search">
+            <button class="research__fields__form__submit ustensils__button" type="button">
+                <i class="far fa-chevron-down ustensils__chevron"></i>
+            </button>
+        </form>
+    </div>
+    <div class="recipesCardsContainer"></div>
 </body>
+
 </html>

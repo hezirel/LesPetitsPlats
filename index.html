@@ -14,25 +14,28 @@
 
 <body>
     <div class="searchSection">
-        <input type="search" class="searchBar" name="search_input"
-            placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
-        <div class="tagsSelected"></div>
+        <form class="searchField">
+            <input type="search" class="searchBar" name="search_input"
+                placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
+            <button class="searchBarSubmit"><i class="far fa-search"></i></button>
+        </form>
     </div>
+    <div class="tagsSelected"></div>
     <div class="tagsSection">
-        <form class="tagsFilterIng">
-            <input class="tagSearchIng" placeholder="Ingrédient" type="search">
+        <form class="tagsFilters">
+            <input class="tagSearchIng" id="ingColor" placeholder="Ingrédient" type="search">
             <button class="research__fields__form__submit ingredient__button" type="button">
                 <i class="far fa-chevron-down ingredient__chevron"></i>
             </button>
         </form>
-        <form class="tagsFilterApp">
-            <input class="tagSearchApp" placeholder="Appareil" type="search">
+        <form class="tagsFilters">
+            <input class="tagSearchApp" id="appColor" placeholder="Appareil" type="search">
             <button class="research__fields__form__submit apparatus__button" type="button">
                 <i class="far fa-chevron-down apparatus__chevron"></i>
             </button>
         </form>
-        <form class="tagsFilterTool">
-            <input class="tagSearchTool" placeholder="Ustensiles" type="search">
+        <form class="tagsFilters">
+            <input class="tagSearchUst" id="ustColor" placeholder="Ustensiles" type="search">
             <button class="research__fields__form__submit ustensils__button" type="button">
                 <i class="far fa-chevron-down ustensils__chevron"></i>
             </button>

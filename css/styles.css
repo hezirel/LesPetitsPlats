@@ -1,6 +1,7 @@
 .logo {
     display: block;
     margin: auto;
+    margin-bottom: 1rem;
 }
 
 body {
@@ -8,32 +9,64 @@ body {
     margin: 3rem;
 }
 
-.searchBar {
-    display: block;
-    margin: 1rem;
-    padding: 1%;
-    justify-self: center;
-    width: 100%;
-    height: 8vh;
-    background-color: rgb(227, 227, 227);
-    border-radius: 5px;
-    border: none;
-}
-
-.tagsSection {
-    align-items: center;
-    display: grid;
-    margin: 1rem;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr;
-    column-gap: 0.5rem;
-    justify-content: center;
-}
-
-.tagsSection > form {
+.searchSection {
     display: flex;
 }
 
-.far {
-    display: inline-block;
+.searchField {
+    display: flex;
+    width: 100%;
+}
+
+.searchField *{
+    background-color: rgb(227, 227, 227);
+    border-radius: 6px;
+    border: none;
+    padding: 0 0.5rem;
+}
+
+.searchBar {
+    width: 100%;
+    padding: 0.7rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.searchField button {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.tagsSection {
+    display: grid;
+    margin-top: 0.5rem;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 0.5rem;
+}
+
+.tagsSection form {
+    display: flex;
+    height: 2.5rem;
+}
+
+.tagsFilters *, .tagsFilters *::placeholder {
+    border: none;
+    padding: 0 0.5rem;
+    color: white;
+}
+
+#ingColor,
+#ingColor~* {
+    background-color: #3075FB;
+}
+
+#appColor,
+#appColor~* {
+    background-color: #00E1A7;
+}
+
+#ustColor,
+#ustColor~* {
+    background-color: #FF5143;
 }

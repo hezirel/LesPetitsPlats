@@ -37,6 +37,9 @@ body {
     border-top-left-radius: 0;
 }
 
+/* .selectedTag */
+
+
 .tagsSection {
     display: grid;
     margin-top: 0.5rem;

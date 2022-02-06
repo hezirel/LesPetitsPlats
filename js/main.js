@@ -1,3 +1,1 @@
-const obj = Object.assign({}, require('./data').recipes);
-
-console.log(obj[0]);
+const obj = fetch("./js/data.json").then(res => res.json());

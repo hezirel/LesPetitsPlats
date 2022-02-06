@@ -13,46 +13,54 @@
 </head>
 
 <body>
-    <div class="searchSection">
-        <form class="searchField">
-            <input type="search" class="searchBar" name="search_input"
-                placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
-            <button class="searchBarSubmit"><i class="far fa-search"></i></button>
-        </form>
-    </div>
-    <div class="tagsSelected"></div>
-    <div class="tagsSection">
-        <form class="tagsFilters">
-            <input class="tagSearchIng" id="ingColor" placeholder="Ingrédient" type="search">
-            <button class="research__fields__form__submit ingredient__button" type="button">
-                <i class="far fa-chevron-down ingredient__chevron"></i>
-            </button>
-        </form>
-        <form class="tagsFilters">
-            <input class="tagSearchApp" id="appColor" placeholder="Appareil" type="search">
-            <button class="research__fields__form__submit apparatus__button" type="button">
-                <i class="far fa-chevron-down apparatus__chevron"></i>
-            </button>
-        </form>
-        <form class="tagsFilters">
-            <input class="tagSearchUst" id="ustColor" placeholder="Ustensiles" type="search">
-            <button class="research__fields__form__submit ustensils__button" type="button">
-                <i class="far fa-chevron-down ustensils__chevron"></i>
-            </button>
-        </form>
-    </div>
-    <section class="index">
-        <article class="recipeCard">
-            <figure>
-                <img src="" alt="">
-                <figcaption></figcaption>
-            </figure>
-            <h2></h2>
-            <h3></h3>
-            <ul></ul>
-            <p></p>
-        </article>
-    </section>
+    <main>
+        <div class="searchSection">
+            <form class="searchField">
+                <input type="search" class="searchBar" name="search_input"
+                    placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
+                <button class="searchBarSubmit"><i class="far fa-search"></i></button>
+            </form>
+        </div>
+        <div class="tagsSelected"></div>
+        <div class="tagsSection">
+            <form class="tagsFilters">
+                <input class="tagSearchIng" id="ingColor" placeholder="Ingrédient" type="search">
+                <button class="research__fields__form__submit ingredient__button" type="button">
+                    <i class="far fa-chevron-down ingredient__chevron"></i>
+                </button>
+            </form>
+            <form class="tagsFilters">
+                <input class="tagSearchApp" id="appColor" placeholder="Appareil" type="search">
+                <button class="research__fields__form__submit apparatus__button" type="button">
+                    <i class="far fa-chevron-down apparatus__chevron"></i>
+                </button>
+            </form>
+            <form class="tagsFilters">
+                <input class="tagSearchUst" id="ustColor" placeholder="Ustensiles" type="search">
+                <button class="research__fields__form__submit ustensils__button" type="button">
+                    <i class="far fa-chevron-down ustensils__chevron"></i>
+                </button>
+            </form>
+        </div>
+        <section class="index">
+            <article class="resNode">
+                <figure>
+                    <img src="" alt="">
+                    <figcaption></figcaption>
+                </figure>
+                <h2>Limonade de Coco</h2>
+                <h3>10mn</h3>
+                <ul>
+                    <li><span><b>Lait de Coco:</b>400ml</span></li>
+                    <li>etc</li>
+                    <li>ing1</li>
+                </ul>
+                <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée</p>
+            </article>
+        </section>
+    </main>
+    <script type="text/Javascript" src="./js/main.js"></script>
+
 </body>
 
 </html>

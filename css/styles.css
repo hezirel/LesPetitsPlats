@@ -2,6 +2,8 @@
     --ing: #3075FB;
     --app: #00E1A7;
     --ust: #FF5143;
+    --node-fig-bg: rgb(202, 189, 189);
+    --node-body-bg: rgb(231, 231, 231);
 }
 
 .logo {
@@ -11,39 +13,42 @@
 }
 
 body {
-    align-items: center;
-    margin: 3rem;
+    margin: 5rem;
 }
 
-.searchSection {
+.searchContainer {
     display: flex;
 }
 
-.searchField {
+.searchForm {
     display: flex;
     width: 100%;
 }
 
-.searchField *{
+.searchForm * {
     background-color: rgb(227, 227, 227);
     border-radius: 6px;
     border: none;
     padding: 0 0.5rem;
 }
 
-.searchBar {
+.searchInput {
     width: 100%;
     padding: 0.7rem;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 }
 
-.searchField button {
+.searchInputSubmit {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
 }
 
-.tagsSection {
+.filterSelection {
+
+}
+
+.filterBox {
     display: grid;
     margin: 0.5rem 0;
     grid-template-columns: repeat(6, 1fr);
@@ -51,12 +56,13 @@ body {
     column-gap: 1rem;
 }
 
-.tagsSection form {
+.filterBox form {
     display: flex;
     height: 2.5rem;
 }
 
-.tagsFilters *, .tagsFilters *::placeholder {
+.filterForm *,
+.filterForm *::placeholder {
     border: none;
     padding: 0 0.5rem;
     color: white;
@@ -80,9 +86,62 @@ body {
 .index {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1fr;
+    gap: 1rem;
 }
 
-.resNode {
-    border: 1px solid violet;
+.resNodeFig {
+    height: 20vh;
+    background-color: var(--node-fig-bg);
+    margin: 0;
+}
+
+.resNode,
+.resNodeContent {
+    background-color: var(--node-body-bg);
+}
+
+.resNodeContentHeader {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    justify-content: space-between;
+}
+
+.resNodeContentHeader * {
+    font-weight: lighter;
+}
+.resNodeContent {
+    padding: 1rem;
+    padding-top: 0.2rem;
+    font-size: 11px;
+}
+
+.resNodeContentBody {
+    display: grid;
+    align-items: center;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 10px;
+}
+
+.nodeIngList {
+    align-self: start;
+    font-size: 12px;
+    justify-self: start;
+}
+
+.resNodeContentBody ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resNodeContent p {
+    align-self: start;
+    justify-self: start;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: 100%;
 }

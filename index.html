@@ -1,64 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les Petits Plats</title>
     <img src="img/logo.svg" alt="Logo les Petits Plats" class="logo">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/36102fc3ba.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <main>
-        <div class="searchSection">
-            <form class="searchField">
-                <input type="search" class="searchBar" name="search_input"
-                    placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
-                <button class="searchBarSubmit"><i class="far fa-search"></i></button>
-            </form>
-        </div>
-        <div class="tagsSelected"></div>
-        <div class="tagsSection">
-            <form class="tagsFilters">
-                <input class="tagSearchIng" id="ingColor" placeholder="Ingrédient" type="search">
-                <button class="research__fields__form__submit ingredient__button" type="button">
-                    <i class="far fa-chevron-down ingredient__chevron"></i>
-                </button>
-            </form>
-            <form class="tagsFilters">
-                <input class="tagSearchApp" id="appColor" placeholder="Appareil" type="search">
-                <button class="research__fields__form__submit apparatus__button" type="button">
-                    <i class="far fa-chevron-down apparatus__chevron"></i>
-                </button>
-            </form>
-            <form class="tagsFilters">
-                <input class="tagSearchUst" id="ustColor" placeholder="Ustensiles" type="search">
-                <button class="research__fields__form__submit ustensils__button" type="button">
-                    <i class="far fa-chevron-down ustensils__chevron"></i>
-                </button>
-            </form>
-        </div>
-        <section class="index">
-            <article class="resNode">
-                <figure>
-                    <img src="" alt="">
-                    <figcaption></figcaption>
-                </figure>
-                <h2>Limonade de Coco</h2>
-                <h3>10mn</h3>
-                <ul>
-                    <li><span><b>Lait de Coco:</b>400ml</span></li>
-                    <li>etc</li>
-                    <li>ing1</li>
-                </ul>
-                <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée</p>
-            </article>
-        </section>
-    </main>
+    <div class="searchContainer">
+        <form class="searchForm">
+            <input type="search" class="searchInput" name="search_input"
+                placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
+            <button class="searchInputSubmit"><i class="far fa-search"></i></button>
+        </form>
+    </div>
+    <div class="filterSelection"></div>
+    <div class="filterBox">
+        <form class="filterForm">
+            <input class="tagSearchIng" id="ingColor" placeholder="Ingrédient" type="search">
+            <button class="research__fields__form__submit ingredient__button" type="button">
+                <i class="far fa-chevron-down ingredient__chevron"></i>
+            </button>
+        </form>
+        <form class="filterForm">
+            <input class="tagSearchApp" id="appColor" placeholder="Appareil" type="search">
+            <button class="research__fields__form__submit apparatus__button" type="button">
+                <i class="far fa-chevron-down apparatus__chevron"></i>
+            </button>
+        </form>
+        <form class="filterForm">
+            <input class="tagSearchUst" id="ustColor" placeholder="Ustensiles" type="search">
+            <button class="research__fields__form__submit ustensils__button" type="button">
+                <i class="far fa-chevron-down ustensils__chevron"></i>
+            </button>
+        </form>
+    </div>
+    <section class="index">
+        <article class="resNode">
+            <figure class="resNodeFig">
+            </figure>
+            <section class="resNodeContent">
+                <section class="resNodeContentHeader">
+                    <h2>Limonade de Coco</h2>
+                    <h3>10mn
+                        <i class="far fa-clock"></i>
+                    </h3>
+                </section>
+                <section class="resNodeContentBody">
+                    <ul class="nodeIngList">
+                        <li><span>Lait de Coco:400ml</span></li>
+                        <li><span>Lait de Coco:400ml</span></li>
+                        <li><span>Lait de Coco:400ml</span></li>
+                        <li><span>Lait de Coco:400ml</span></li>
+                    </ul>
+                    <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de
+                        2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée</p>
+                </section>
+            </section>
+        </article>
+    </section>
     <script type="text/Javascript" src="./js/main.js"></script>
 
 </body>

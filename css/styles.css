@@ -81,7 +81,7 @@ body {
     background-color: var(--ust);
 }
 
-.resultOut {
+#resultOut {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
@@ -107,7 +107,7 @@ body {
 .resultNodeHeader {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 1em;
     justify-content: space-between;
 }
 
@@ -138,6 +138,7 @@ body {
 .resultNodeBody > p {
     align-self: start;
     justify-self: start;
+    max-height: 20vh;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;

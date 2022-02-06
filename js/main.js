@@ -1,1 +1,1 @@
-const obj = fetch("./js/data.json").then(res => console.log("nique ta grand mère la pute !!!", res.json()));
+const obj = fetch("./js/data.json").then(res => res.json());

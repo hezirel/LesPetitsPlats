@@ -1,8 +1,7 @@
-let query = "";
-let filters = [];
 const dataFetch = async () => await fetch("./js/data.json").then(res => res.json());
 let index = document.querySelector("#resultOut");
 let searchInput = document.querySelector(".searchInput");
+let tags = [];
 
 let queryFilterValidator = (request, data) => {
     if (!request) {
@@ -30,7 +29,9 @@ const indexFill = async () => {
 }
 
 searchInput.addEventListener('keyup', (e) => {
-    indexFill();
+    if (searchInput.value.length > 2) {
+        indexFill();
+    }
 })
 
 indexFill();

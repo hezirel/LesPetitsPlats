@@ -44,9 +44,7 @@ body {
     border-top-left-radius: 0;
 }
 
-.filterSelection {
-
-}
+.filterSelection {}
 
 .filterBox {
     display: grid;
@@ -68,78 +66,78 @@ body {
     color: white;
 }
 
-#ingColor,
-#ingColor~* {
+#filter1,
+#filter1~* {
     background-color: var(--ing);
 }
 
-#appColor,
-#appColor~* {
+#filter2,
+#filter2~* {
     background-color: var(--app);
 }
 
-#ustColor,
-#ustColor~* {
+#filter3,
+#filter3~* {
     background-color: var(--ust);
 }
 
-.index {
+.resultOut {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 }
 
-.resNodeFig {
+.resultNodeImg {
     height: 20vh;
     background-color: var(--node-fig-bg);
     margin: 0;
 }
 
-.resNode,
-.resNodeContent {
+.resultNode,
+.resultNodeInfo {
     background-color: var(--node-body-bg);
 }
 
-.resNodeContentHeader {
+.resultNodeInfo {
+    padding: 1rem;
+    padding-top: 0.2rem;
+    font-size: 11px;
+}
+
+.resultNodeHeader {
     display: flex;
     align-items: center;
     font-size: 12px;
     justify-content: space-between;
 }
 
-.resNodeContentHeader * {
+.resultNodeHeader * {
     font-weight: lighter;
 }
-.resNodeContent {
-    padding: 1rem;
-    padding-top: 0.2rem;
-    font-size: 11px;
-}
 
-.resNodeContentBody {
+
+.resultNodeBody {
     display: grid;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.7rem;
     grid-template-columns: repeat(2, 1fr);
     font-size: 10px;
 }
 
-.nodeIngList {
+.resultNodeComponents {
     align-self: start;
     font-size: 12px;
     justify-self: start;
 }
 
-.resNodeContentBody ul {
+.resultNodeComponents {
     list-style-type: none;
     padding: 0;
-    margin: 0;
 }
 
-.resNodeContent p {
+.resultNodeBody > p {
     align-self: start;
     justify-self: start;
-    margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;

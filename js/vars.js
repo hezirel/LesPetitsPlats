@@ -17,4 +17,12 @@ searchInput.addEventListener('keyup', (e) => {
     }
 })
 
+document.querySelector('.btnTags_2').addEventListener('click', () => {
+    displayDrawer();
+})
 
+function displayDrawer() {
+    let x = document.getElementById("hiddenTags_2");
+
+    x.style.display === "none" ? x.style.display = "block" : "none";
+}

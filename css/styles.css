@@ -59,6 +59,11 @@ body {
     height: 2.5rem;
 }
 
+.filterForm {
+    position: relative;
+    display: inline-block;
+}
+
 .filterForm *,
 .filterForm *::placeholder {
     border: none;
@@ -83,6 +88,9 @@ body {
 
 .tagsDrawer {
     display: none;
+    position: absolute;
+    background-color: var(--app);
+    z-index: 1;
 }
 
 #resultOut {

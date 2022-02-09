@@ -54,26 +54,26 @@ body {
     column-gap: 1rem;
 }
 
-.filterBox form {
+.filterform {
     display: flex;
-    height: 2.5rem;
 }
 
-.filterForm {
-    position: relative;
-    display: inline-block;
+.upperTagsGrid {
+    display: flex;
+    height: 3rem;
+}
+
+.upperTagsGrid button i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
 }
 
 .filterForm *,
 .filterForm *::placeholder {
     border: none;
-    padding: 0 0.5rem;
     color: white;
-}
-
-#filter1,
-#filter1~* {
-    background-color: var(--ing);
 }
 
 #filter2,
@@ -81,16 +81,29 @@ body {
     background-color: var(--app);
 }
 
-#filter3,
-#filter3~* {
-    background-color: var(--ust);
+.tagsDrawer {
+    display: grid;
+    list-style-type: none;
+    z-index: 1;
 }
 
-.tagsDrawer {
-    display: none;
-    position: absolute;
+.tagsDrawer ul {
+    padding: 1rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    display: flex;
+    height: 40vh;
+    border-radius: 15%;
+}
+
+.tagsDrawer ul a {
     background-color: var(--app);
-    z-index: 1;
+    flex: 1;
+    list-style-type: none;
+    padding: 0.5rem;
+    height: 1rem;
+    justify-content: center;
+    font-size: 20px;
 }
 
 #resultOut {

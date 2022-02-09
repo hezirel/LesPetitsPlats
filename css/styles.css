@@ -84,26 +84,32 @@ body {
 .tagsDrawer {
     display: grid;
     list-style-type: none;
+    border-radius: 10px;
     z-index: 1;
 }
 
 .tagsDrawer ul {
-    padding: 1rem;
+    padding: 0;
+    margin-top: 0;
     flex-direction: column;
     flex-wrap: wrap;
     display: flex;
-    height: 40vh;
+    height: 50vh;
     border-radius: 15%;
 }
 
 .tagsDrawer ul a {
-    background-color: var(--app);
     flex: 1;
     list-style-type: none;
-    padding: 0.5rem;
-    height: 1rem;
+    height: 5rem;
+    padding: 1rem;
     justify-content: center;
+    align-items: center;
     font-size: 20px;
+}
+
+#hiddenTags_2 ul a {
+    background-color: var(--app);
 }
 
 #resultOut {

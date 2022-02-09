@@ -81,6 +81,10 @@ body {
     background-color: var(--ust);
 }
 
+.tagsDrawer {
+    display: none;
+}
+
 #resultOut {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -135,7 +139,7 @@ body {
     padding: 0;
 }
 
-.resultNodeBody > p {
+.resultNodeBody>p {
     align-self: start;
     justify-self: start;
     max-height: 20vh;

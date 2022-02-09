@@ -1,8 +1,4 @@
-const dataFetch = async () => await fetch("./js/data.json").then(res => res.json());
-let index = document.querySelector("#resultOut");
-let searchInput = document.querySelector(".searchInput");
-let tags = [];
-
+//All the algorithmic code to filter results happens here
 let queryFilterValidator = (request, data) => {
     if (!request) {
         return true;
@@ -15,23 +11,23 @@ let queryFilterValidator = (request, data) => {
     if (name.includes(request) || description.includes(request) || ingredients.some(e => e.ingredient.includes(request))) {
         return true;
     }
+    //#: tags query validator sequence here
     return false;
 }
 
 const indexFill = async () => {
     let resultArray = await dataFetch();
-    index.textContent = '';
+    index.innerHTML = '';
     resultArray.forEach((e) => {
+        //#:add tags query as 2nd parameter of query filter if existing (...args ?)
+        tagsAvailable.apparels.push(e.appliance);
+        tagsAvailable.ustensils.push(e.ustensils);
         if (queryFilterValidator(searchInput.value, e)) {
             index.appendChild(cardNode(e))
         }
     })
+    tagsAvailable.apparels = [...new Set(tagsAvailable.apparels)];
+    tagsAvailable.apparels.forEach(e => appDrawer.innerHTML += `<li>${e}</li>`)
 }
-
-searchInput.addEventListener('keyup', (e) => {
-    if (searchInput.value.length > 2) {
-        indexFill();
-    }
-})
 
 indexFill();

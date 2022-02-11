@@ -6,6 +6,19 @@
     --node-body-bg: rgb(231, 231, 231);
 }
 
+.tagsApp {
+    background-color: var(--app);
+}
+
+
+.tagsIng {
+    background-color: var(--ing);
+}
+
+.tagsUst {
+    background-color: var(--ust);
+}
+
 .logo {
     display: block;
     margin: auto;
@@ -13,7 +26,7 @@
 }
 
 body {
-    /* margin: 5rem; */
+    margin: 5rem;
 }
 
 .searchContainer {
@@ -44,7 +57,7 @@ body {
     border-top-left-radius: 0;
 }
 
-.filterSelection {}
+#tagsSelection {}
 
 .filterBox {
     display: grid;
@@ -76,44 +89,20 @@ body {
     color: white;
 }
 
-#filter2,
-#filter2~* {
-    background-color: var(--app);
-}
-
 .tagsDrawer {
-    display: grid;
+    display: none;
+    padding: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
     list-style-type: none;
     border-radius: 10px;
+    max-width: 40rem;
+    position: absolute;
     z-index: 1;
 }
 
-.tagsDrawer ul {
-    padding: 0;
-    margin-top: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-    max-height: 50vh;
-    border-radius: 15%;
-    z-index: 1;
-}
-
-.tagsDrawer ul a {
-    flex: 1;
-    list-style-type: none;
-    height: auto;
-    align-items: center;
-    padding: 1rem;
-    padding-bottom: 0;
-    justify-content: center;
-    align-items: center;
+.tagsDrawer > * {
+    padding: 0.5rem;
     font-size: 20px;
-}
-
-#hiddenTags_2 {
-    background-color: var(--app);
 }
 
 #resultOut {

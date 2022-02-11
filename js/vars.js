@@ -1,15 +1,18 @@
 const dataFetch = () => fetch("./js/data.json").then(res => res.json());
 let index = document.querySelector("#resultOut");
-let searchInput = document.querySelector(".searchInput");
-let ingDrawer = document.querySelector("#hiddenTags_1>ul");
-let appDrawer = document.querySelector("#hiddenTags_2 ul");
-let ustDrawer = document.querySelector("#hiddenTags_3>ul");
+let searchInput = document.querySelector("#mainSearchInput");
+
+let appInputZone = document.querySelector("#test");
+let appInput = document.querySelector("#tagsSearchInputApp");
+let appDrawer = document.querySelector("#tagsDrawerApp")
+let appDrawerul = document.querySelector("#tagsDrawerApp")
 let appBtn = document.querySelector(".appartus_button");
 let tagsAvailable = {
-    ingredients: [],
-    apparels: [],
-    ustensils: []
-}, tagsUserChoice = tagsAvailable;
+        ingredients: [],
+        apparels: [],
+        ustensils: []
+    },
+    tagsUserChoice = tagsAvailable;
 
 searchInput.addEventListener('keyup', (e) => {
     if (searchInput.value.length > 2) {
@@ -17,12 +20,6 @@ searchInput.addEventListener('keyup', (e) => {
     }
 })
 
-document.querySelector('.btnTags_2').addEventListener('click', () => {
-    displayDrawer();
+appInput.addEventListener('click', () => {
+    appDrawer.style.display = 'grid';
 })
-
-function displayDrawer() {
-    let x = document.getElementById("hiddenTags_2");
-
-    x.style.display === "none" ? x.style.display = "block" : "none";
-}

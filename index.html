@@ -13,7 +13,7 @@
 <body>
     <div class="searchContainer">
         <form class="searchForm">
-            <input type="search" class="searchInput" name="search_input"
+            <input type="search" class="searchInput" id="mainSearchInput"name="search_input"
                 placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
             <button class="searchInputSubmit"><i class="far fa-search"></i></button>
         </form>
@@ -22,14 +22,35 @@
     <div class="filterBox">
         <div class="filterForm">
             <div class="upperTagsGrid">
-                <input class="filterInput_2" id="filter2" placeholder="Appareil" type="search">
-                <button class="btnTags_2" type="button">
+                <input class="tagsIng" id="tagsSearchInputIng" placeholder="Ingrédients" type="search">
+                <button class="tagsIng" type="button">
                     <i class="far fa-chevron-down"></i>
                 </button>
             </div>
-            <div class="tagsDrawer" id="hiddenTags_2">
+            <div class="tagsDrawer tagsIng" id="tagsDrawerIng">
                 <ul>
-
+                </ul>
+            </div>
+        </div>
+        <div class="filterForm">
+            <div class="upperTagsGrid">
+                <input class="tagsApp" id="tagsSearchInputApp" placeholder="Appareil" type="search">
+                <button class="tagsApp" id="test" type="button">
+                    <i class="far fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="tagsDrawer tagsApp" id="tagsDrawerApp">
+            </div>
+        </div>
+        <div class="filterForm">
+            <div class="upperTagsGrid">
+                <input class="tagsUst" id="tagsSearchInputUst" placeholder="Ustensiles" type="search">
+                <button class="tagsUst" type="button">
+                    <i class="far fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="tagsDrawer tagsUst" id="tagsDrawerUst">
+                <ul>
                 </ul>
             </div>
         </div>

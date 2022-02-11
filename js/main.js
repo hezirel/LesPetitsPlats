@@ -27,7 +27,7 @@ const indexFill = async () => {
         }
     })
     tagsAvailable.apparels = [...new Set(tagsAvailable.apparels)];
-    tagsAvailable.apparels.forEach(e => appDrawer.innerHTML += `<a>${e}</a>`)
+    tagsAvailable.apparels.forEach(e => appDrawerul.innerHTML += `<a>${e}</a>`)
 }
 
 indexFill();

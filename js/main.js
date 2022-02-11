@@ -17,17 +17,23 @@ let queryFilterValidator = (request, data) => {
 
 const indexFill = async () => {
     let resultArray = await dataFetch();
-    index.innerHTML = '';
+
     resultArray.forEach((e) => {
         //#:add tags query as 2nd parameter of query filter if existing (...args ?)
+
+        index.appendChild(cardNode(e))
+
         tagsAvailable.apparels.push(e.appliance);
         tagsAvailable.ustensils.push(e.ustensils);
-        if (queryFilterValidator(searchInput.value, e)) {
-            index.appendChild(cardNode(e))
-        }
     })
+
+    tagsAvailable.ingredients
     tagsAvailable.apparels = [...new Set(tagsAvailable.apparels)];
-    tagsAvailable.apparels.forEach(e => appDrawerul.innerHTML += `<a>${e}</a>`)
+    tagsAvailable.ustensils = [...new Set(tagsAvailable.ustensils)];
+
+    tagsAvailable.ingredients.forEach(e => ingDrawer.innerHTML += `<a>${e}</a>`)
+    tagsAvailable.apparels.forEach(e => appDrawer.innerHTML += `<a>${e}</a>`)
+    tagsAvailable.ustensils.forEach(e => ustDrawer.innerHTML += `<a>${e}</a>`)
 }
 
 indexFill();

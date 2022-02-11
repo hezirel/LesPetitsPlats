@@ -1,12 +1,17 @@
 const dataFetch = () => fetch("./js/data.json").then(res => res.json());
 let index = document.querySelector("#resultOut");
+
 let searchInput = document.querySelector("#mainSearchInput");
 
-let appInputZone = document.querySelector("#test");
+let ingInput = document.querySelector("#tagsSearchInputIng");
+let ingDrawer = document.querySelector("#tagsDrawerIng");
+
 let appInput = document.querySelector("#tagsSearchInputApp");
-let appDrawer = document.querySelector("#tagsDrawerApp")
-let appDrawerul = document.querySelector("#tagsDrawerApp")
-let appBtn = document.querySelector(".appartus_button");
+let appDrawer = document.querySelector("#tagsDrawerApp");
+
+let ustInput = document.querySelector("#tagsSearchInputUst");
+let ustDrawer = document.querySelector("#tagsDrawerUst");
+
 let tagsAvailable = {
         ingredients: [],
         apparels: [],
@@ -20,6 +25,14 @@ searchInput.addEventListener('keyup', (e) => {
     }
 })
 
+ingInput.addEventListener('click', () => {
+    ingDrawer.style.display === 'none' ? ingDrawer.style.display = 'grid' : ingDrawer.style.display = 'none';
+})
+
 appInput.addEventListener('click', () => {
-    appDrawer.style.display = 'grid';
+    appDrawer.style.display === 'none' ? appDrawer.style.display = 'grid' : appDrawer.style.display = 'none';
+})
+
+ustInput.addEventListener('click', () => {
+    ustDrawer.style.display === 'none' ? ustDrawer.style.display = 'grid' : ustDrawer.style.display = 'none';
 })

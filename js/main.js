@@ -17,23 +17,79 @@ let queryFilterValidator = (request, data) => {
 
 const indexFill = async () => {
     let resultArray = await dataFetch();
-
+    index.innerHTML = "";
     resultArray.forEach((e) => {
-        //#:add tags query as 2nd parameter of query filter if existing (...args ?)
 
-        index.appendChild(cardNode(e))
+        e.ingredients.forEach((e) => {
+            tagsAvailable.ingredients.push(e.ingredient);
+        })
 
         tagsAvailable.apparels.push(e.appliance);
-        tagsAvailable.ustensils.push(e.ustensils);
+
+        e.ustensils.forEach((e) => {
+            tagsAvailable.ustensils.push(e)
+        })
+
+        index.appendChild(cardNode(e))
     })
 
-    tagsAvailable.ingredients
+    tagsAvailable.ingredients = [...new Set(tagsAvailable.ingredients)];
     tagsAvailable.apparels = [...new Set(tagsAvailable.apparels)];
     tagsAvailable.ustensils = [...new Set(tagsAvailable.ustensils)];
 
-    tagsAvailable.ingredients.forEach(e => ingDrawer.innerHTML += `<a>${e}</a>`)
-    tagsAvailable.apparels.forEach(e => appDrawer.innerHTML += `<a>${e}</a>`)
-    tagsAvailable.ustensils.forEach(e => ustDrawer.innerHTML += `<a>${e}</a>`)
+    renderAdvancedFiltersDom();
 }
 
-indexFill();
+window.onload = indexFill();
+
+
+let renderAdvancedFiltersDom = () => {
+    let oRenderDom = {};
+    console.log("redrawing dom");
+    ingDrawer.innerHTML = "";
+    appDrawer.innerHTML = "";
+    ustDrawer.innerHTML = "";
+
+    tagsAvailable.ingredients.forEach(e => {
+        let node = document.createElement('a');
+        node.textContent = e;
+        node.href = "#";
+        node.addEventListener("mousedown", (e) => {
+            searchTagsDisplay.innerHTML += `<a class='ingBg'>${e.target.innerText}</a>`
+            //add tags to userChoice object. Redraw Dom after set
+        })
+        if (!(oUserQuery.ingUserInput === "")) {
+            e.includes(oUserQuery.ingUserInput) ? ingDrawer.appendChild(node) : false;
+        } else {
+            ingDrawer.appendChild(node);
+        }
+    });
+
+    tagsAvailable.apparels.forEach(e => {
+        let node = document.createElement('a');
+        node.textContent = e;
+        node.href = "#";
+        node.addEventListener("mousedown", (e) => {
+            searchTagsDisplay.innerHTML += `<a class='appBg'>${e.target.innerText}</a>`
+        })
+        appDrawer.appendChild(node);
+    });
+
+    tagsAvailable.ustensils.forEach(e => {
+        let node = document.createElement('a');
+        node.textContent = e;
+        node.href = "#";
+        node.addEventListener("mousedown", (e) => {
+            searchTagsDisplay.innerHTML += `<a class='ustBg'>${e.target.innerText}</a>`
+        })
+        ustDrawer.appendChild(node);
+    });
+}
+
+
+ingInput.addEventListener('keyup', (e) => {
+    if (searchInput.value.length > 2) {
+        oUserQuery.ingUserInput = searchInput.value;
+        renderAdvancedFiltersDom();
+    }
+})

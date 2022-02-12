@@ -1,5 +1,6 @@
 const dataFetch = () => fetch("./js/data.json").then(res => res.json());
 let index = document.querySelector("#resultOut");
+let searchTagsDisplay = document.querySelector(".filterSelection");
 
 let searchInput = document.querySelector("#mainSearchInput");
 
@@ -13,26 +14,47 @@ let ustInput = document.querySelector("#tagsSearchInputUst");
 let ustDrawer = document.querySelector("#tagsDrawerUst");
 
 let tagsAvailable = {
-        ingredients: [],
-        apparels: [],
-        ustensils: []
-    },
-    tagsUserChoice = tagsAvailable;
+    ingredients: [],
+    apparels: [],
+    ustensils: [],
+    ingUserInput: "",
+    appUserInput: "",
+    ustUserInput: ""
+};
+let oUserQuery = tagsAvailable;
 
 searchInput.addEventListener('keyup', (e) => {
     if (searchInput.value.length > 2) {
-        indexFill();
+        oUserQuery.ingUserInput = searchInput.value;
+        renderAdvancedFiltersDom();
     }
 })
 
-ingInput.addEventListener('click', () => {
-    ingDrawer.style.display === 'none' ? ingDrawer.style.display = 'grid' : ingDrawer.style.display = 'none';
+ingInput.addEventListener('keyup', () => {
+    oUserQuery.ingUserInput = ingInput.value;
+    renderAdvancedFiltersDom();
 })
 
-appInput.addEventListener('click', () => {
-    appDrawer.style.display === 'none' ? appDrawer.style.display = 'grid' : appDrawer.style.display = 'none';
+ingInput.addEventListener('focusin', () => {
+    ingDrawer.style.display = 'grid';
 })
 
-ustInput.addEventListener('click', () => {
-    ustDrawer.style.display === 'none' ? ustDrawer.style.display = 'grid' : ustDrawer.style.display = 'none';
+ingInput.addEventListener('focusout', () => {
+    ingDrawer.style.display = 'none';
+})
+
+appInput.addEventListener('focusin', () => {
+    appDrawer.style.display = 'grid';
+})
+
+appInput.addEventListener('focusout', () => {
+    appDrawer.style.display = 'none';
+})
+
+ustInput.addEventListener('focusin', () => {
+    ustDrawer.style.display = 'grid';
+})
+
+ustInput.addEventListener('focusout', () => {
+    ustDrawer.style.display = 'none';
 })

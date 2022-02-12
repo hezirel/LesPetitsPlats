@@ -6,6 +6,16 @@
     --node-body-bg: rgb(231, 231, 231);
 }
 
+.ingBg {
+    background-color: #3075FB;
+}
+
+.appBg {
+    background-color: #00E1A7;
+}
+.ustBg {
+    background-color: #FF5143;
+}
 .tagsApp {
     background-color: var(--app);
 }
@@ -57,7 +67,17 @@ body {
     border-top-left-radius: 0;
 }
 
-#tagsSelection {}
+.filterSelection {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem;
+    flex-wrap: wrap;
+}
+
+.filterSelection a {
+    padding: 0.5rem;
+    color: white;
+}
 
 .filterBox {
     display: grid;

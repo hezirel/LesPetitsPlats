@@ -15,11 +15,26 @@ let queryFilterValidator = (request, data) => {
     return false;
 }
 
-const indexFill = async () => {
+const cacheFill = async () => {
     let resultArray = await dataFetch();
-    index.innerHTML = "";
-    resultArray.forEach((e) => {
+    cache = resultArray;
+    outFeed(cache);
+}
 
+window.onload = cacheFill();
+
+let outFeed = (data) => {
+    index.innerHTML = "";
+    tagsAvailable = {
+        ingredients: [],
+        apparels: [],
+        ustensils: [],
+        ingUserInput: "",
+        appUserInput: "",
+        ustUserInput: "",
+        searchUserInput: "",
+    }
+    data.forEach((e) => {
         e.ingredients.forEach((e) => {
             tagsAvailable.ingredients.push(e.ingredient);
         })
@@ -40,15 +55,12 @@ const indexFill = async () => {
     renderAdvancedFiltersDom();
 }
 
-window.onload = indexFill();
-
-
 let renderAdvancedFiltersDom = () => {
-    let oRenderDom = {};
     console.log("redrawing dom");
     ingDrawer.innerHTML = "";
     appDrawer.innerHTML = "";
     ustDrawer.innerHTML = "";
+
 
     tagsAvailable.ingredients.forEach(e => {
         let node = document.createElement('a');
@@ -56,7 +68,8 @@ let renderAdvancedFiltersDom = () => {
         node.href = "#";
         node.addEventListener("mousedown", (e) => {
             searchTagsDisplay.innerHTML += `<a class='ingBg'>${e.target.innerText}</a>`
-            //add tags to userChoice object. Redraw Dom after set
+            oUserQuery.ingredients.push(e.target.innerText);
+            outFeed(applyQuery(oUserQuery));
         })
         if (!(oUserQuery.ingUserInput === "")) {
             e.includes(oUserQuery.ingUserInput) ? ingDrawer.appendChild(node) : false;
@@ -71,6 +84,8 @@ let renderAdvancedFiltersDom = () => {
         node.href = "#";
         node.addEventListener("mousedown", (e) => {
             searchTagsDisplay.innerHTML += `<a class='appBg'>${e.target.innerText}</a>`
+            oUserQuery.apparels.push(e.target.innerText);
+            outFeed(applyQuery(oUserQuery));
         })
         if (!(oUserQuery.appUserInput === "")) {
             e.includes(oUserQuery.appUserInput) ? appDrawer.appendChild(node) : false;
@@ -85,6 +100,8 @@ let renderAdvancedFiltersDom = () => {
         node.href = "#";
         node.addEventListener("mousedown", (e) => {
             searchTagsDisplay.innerHTML += `<a class='ustBg'>${e.target.innerText}</a>`
+            oUserQuery.ustensils.push(e.target.innerText);
+            outFeed(applyQuery(oUserQuery));
         })
         if (!(oUserQuery.ustUserInput === "")) {
             e.includes(oUserQuery.ustUserInput) ? ustDrawer.appendChild(node) : false;
@@ -94,10 +111,21 @@ let renderAdvancedFiltersDom = () => {
     });
 }
 
+let applyQuery = (filter) => {
+    let list = [];
 
-ingInput.addEventListener('keyup', (e) => {
-    if (searchInput.value.length > 2) {
-        oUserQuery.ingUserInput = searchInput.value;
-        renderAdvancedFiltersDom();
-    }
-})
+    cache.forEach(c => {
+        let {
+            name,
+            description,
+            ingredients,
+            appliance
+        } = c;
+        ingredients.forEach(e => {
+            if (filter.ingredients.includes(e.ingredient)) {
+                list.push(c);
+            }
+        })
+    })
+    return list;
+}

@@ -13,20 +13,25 @@ let appDrawer = document.querySelector("#tagsDrawerApp");
 let ustInput = document.querySelector("#tagsSearchInputUst");
 let ustDrawer = document.querySelector("#tagsDrawerUst");
 
+let cache;
 let tagsAvailable = {
     ingredients: [],
     apparels: [],
     ustensils: [],
     ingUserInput: "",
     appUserInput: "",
-    ustUserInput: ""
+    ustUserInput: "",
+    searchUserInput: "",
 };
 let oUserQuery = tagsAvailable;
 
 searchInput.addEventListener('keyup', (e) => {
     if (searchInput.value.length > 2) {
-        oUserQuery.ingUserInput = searchInput.value;
-        renderAdvancedFiltersDom();
+        oUserQuery.searchUserInput = searchInput.value;
+        outFeed(applyQuery(oUserQuery));
+    } else {
+        oUserQuery.searchUserInput = "";
+        outFeed(applyQuery(oUserQuery));
     }
 })
 

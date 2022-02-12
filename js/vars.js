@@ -14,7 +14,7 @@ let ustInput = document.querySelector("#tagsSearchInputUst");
 let ustDrawer = document.querySelector("#tagsDrawerUst");
 
 let cache;
-let tagsAvailable = {
+let oUserQuery = {
     ingredients: [],
     apparels: [],
     ustensils: [],
@@ -23,7 +23,7 @@ let tagsAvailable = {
     ustUserInput: "",
     searchUserInput: "",
 };
-let oUserQuery = tagsAvailable;
+let tagsAvailable = oUserQuery;
 
 searchInput.addEventListener('keyup', (e) => {
     if (searchInput.value.length > 2) {
@@ -56,7 +56,6 @@ appInput.addEventListener('focusin', () => {
 appInput.addEventListener('focusout', () => {
     appDrawer.style.display = 'none';
 })
-
 
 appInput.addEventListener('keyup', () => {
     oUserQuery.appUserInput = appInput.value;

@@ -1,23 +1,5 @@
-//All the algorithmic code to filter results happens here
-let queryFilterValidator = (request, data) => {
-    if (!request) {
-        return true;
-    }
-    let {
-        name,
-        description,
-        ingredients
-    } = data;
-    if (name.includes(request) || description.includes(request) || ingredients.some(e => e.ingredient.includes(request))) {
-        return true;
-    }
-    //#: tags query validator sequence here
-    return false;
-}
-
 const cacheFill = async () => {
-    let resultArray = await dataFetch();
-    cache = resultArray;
+    cache = await dataFetch();
     outFeed(cache);
 }
 
@@ -35,6 +17,7 @@ let outFeed = (data) => {
         searchUserInput: "",
     }
     data.forEach((e) => {
+
         e.ingredients.forEach((e) => {
             tagsAvailable.ingredients.push(e.ingredient);
         })
@@ -56,17 +39,19 @@ let outFeed = (data) => {
 }
 
 let renderAdvancedFiltersDom = () => {
-    console.log("redrawing dom");
+    //#:queryselectorAll(".drawer")forEach(e => e.innerHTML = "");
     ingDrawer.innerHTML = "";
     appDrawer.innerHTML = "";
     ustDrawer.innerHTML = "";
 
 
+    //#:refactorize tagsAvailable button list constructors
     tagsAvailable.ingredients.forEach(e => {
         let node = document.createElement('a');
         node.textContent = e;
         node.href = "#";
         node.addEventListener("mousedown", (e) => {
+            //#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
             searchTagsDisplay.innerHTML += `<a class='ingBg'>${e.target.innerText}</a>`
             oUserQuery.ingredients.push(e.target.innerText);
             outFeed(applyQuery(oUserQuery));
@@ -111,6 +96,7 @@ let renderAdvancedFiltersDom = () => {
     });
 }
 
+//All the algorithmic code to filter results happens here
 let applyQuery = (filter) => {
     let list = [];
 
@@ -123,21 +109,9 @@ let applyQuery = (filter) => {
             ustensils
         } = c;
 
-        ingredients.forEach(e => {
-            if (filter.ingredients.includes(e.ingredient)) {
-                list.push(c);
-            }
-        })
-
-        if (filter.apparels.includes(appliance)) {
-            list.push(c);
+        if (filter.searchUserInput) {
+            name.includes(filter.searchUserInput) ? list.push(c) : false;
         }
-
-        ustensils.forEach(e => {
-            if (filter.ingredients.includes(e)) {
-                list.push(c);
-            }
-        })
     })
     return list;
 }

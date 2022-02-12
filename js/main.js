@@ -72,7 +72,11 @@ let renderAdvancedFiltersDom = () => {
         node.addEventListener("mousedown", (e) => {
             searchTagsDisplay.innerHTML += `<a class='appBg'>${e.target.innerText}</a>`
         })
-        appDrawer.appendChild(node);
+        if (!(oUserQuery.appUserInput === "")) {
+            e.includes(oUserQuery.appUserInput) ? appDrawer.appendChild(node) : false;
+        } else {
+            appDrawer.appendChild(node);
+        }
     });
 
     tagsAvailable.ustensils.forEach(e => {
@@ -82,7 +86,11 @@ let renderAdvancedFiltersDom = () => {
         node.addEventListener("mousedown", (e) => {
             searchTagsDisplay.innerHTML += `<a class='ustBg'>${e.target.innerText}</a>`
         })
-        ustDrawer.appendChild(node);
+        if (!(oUserQuery.ustUserInput === "")) {
+            e.includes(oUserQuery.ustUserInput) ? ustDrawer.appendChild(node) : false;
+        } else {
+            ustDrawer.appendChild(node);
+        }
     });
 }
 

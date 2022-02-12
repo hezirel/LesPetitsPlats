@@ -30,10 +30,6 @@ searchInput.addEventListener('keyup', (e) => {
     }
 })
 
-ingInput.addEventListener('keyup', () => {
-    oUserQuery.ingUserInput = ingInput.value;
-    renderAdvancedFiltersDom();
-})
 
 ingInput.addEventListener('focusin', () => {
     ingDrawer.style.display = 'grid';
@@ -41,6 +37,11 @@ ingInput.addEventListener('focusin', () => {
 
 ingInput.addEventListener('focusout', () => {
     ingDrawer.style.display = 'none';
+})
+
+ingInput.addEventListener('keyup', () => {
+    oUserQuery.ingUserInput = ingInput.value;
+    renderAdvancedFiltersDom();
 })
 
 appInput.addEventListener('focusin', () => {
@@ -51,10 +52,21 @@ appInput.addEventListener('focusout', () => {
     appDrawer.style.display = 'none';
 })
 
+
+appInput.addEventListener('keyup', () => {
+    oUserQuery.appUserInput = appInput.value;
+    renderAdvancedFiltersDom();
+})
+
 ustInput.addEventListener('focusin', () => {
     ustDrawer.style.display = 'grid';
 })
 
 ustInput.addEventListener('focusout', () => {
     ustDrawer.style.display = 'none';
+})
+
+ustInput.addEventListener('keyup', () => {
+    oUserQuery.ustUserInput = ustInput.value;
+    renderAdvancedFiltersDom();
 })

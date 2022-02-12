@@ -119,10 +119,22 @@ let applyQuery = (filter) => {
             name,
             description,
             ingredients,
-            appliance
+            appliance,
+            ustensils
         } = c;
+
         ingredients.forEach(e => {
             if (filter.ingredients.includes(e.ingredient)) {
+                list.push(c);
+            }
+        })
+
+        if (filter.apparels.includes(appliance)) {
+            list.push(c);
+        }
+
+        ustensils.forEach(e => {
+            if (filter.ingredients.includes(e)) {
                 list.push(c);
             }
         })

@@ -39,11 +39,11 @@ let outFeed = (data) => {
 }
 
 let renderAdvancedFiltersDom = () => {
-    //#:queryselectorAll(".drawer")forEach(e => e.innerHTML = "");
-    ingDrawer.innerHTML = "";
-    appDrawer.innerHTML = "";
-    ustDrawer.innerHTML = "";
 
+    //Reset tags drawer content
+    tagsDrawers.forEach(e => {
+        e.innerHTML = "";
+    })
 
     //#:refactorize tagsAvailable button list constructors
     tagsAvailable.ingredients.forEach(e => {
@@ -109,8 +109,11 @@ let applyQuery = (filter) => {
             ustensils
         } = c;
 
-        if (filter.searchUserInput) {
+        if (!(filter.searchUserInput === "")) {
             name.includes(filter.searchUserInput) ? list.push(c) : false;
+        } else {
+            //#:logic for further filtering ?
+            list.push(c);
         }
     })
     return list;

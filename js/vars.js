@@ -4,6 +4,8 @@ let searchTagsDisplay = document.querySelector(".filterSelection");
 
 let searchInput = document.querySelector("#mainSearchInput");
 
+let tagsDrawers = document.querySelectorAll(".tagsDrawer");
+
 let ingInput = document.querySelector("#tagsSearchInputIng");
 let ingDrawer = document.querySelector("#tagsDrawerIng");
 

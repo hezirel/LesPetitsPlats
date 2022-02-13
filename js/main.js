@@ -126,6 +126,7 @@ let renderAdvancedFiltersDom = () => {
 //All the algorithmic code to filter results happens here
 let applyQuery = (filter) => {
     let list = [];
+
     let {
         ingredients: fIng,
         apparels: fApp,
@@ -133,6 +134,9 @@ let applyQuery = (filter) => {
         searchUserInput: fSea
     } = filter;
 
+    let aFilter = [fIng, fApp, fUst];
+
+    console.log(aFilter)
     cache.forEach(c => {
         let {
             name,
@@ -141,17 +145,24 @@ let applyQuery = (filter) => {
             appliance,
             ustensils
         } = c;
-
+        let aIng = [];
+        console.log("START3")
+        ingredients.forEach(e => {
+            console.log(e.ingredient);
+            aIng.push(e.ingredient);
+        })
         //Array from filters.every{1 false return block list.push}
-
-        if (fIng) {
-            fIng.every(name => {
-                return ingredients.some(e => {
-                    return e.ingredient === name ? true : false;
-                })
-            }) ? list.push(c) : false;
-        }
+        aFilter.every(r => {
+            if (r.length > 0) {
+                return r.every(t => {
+                    return aIng.includes(t) ? true : false;
+                }) ? true : false;
+            } else {
+                return true;
+            }
+        }) ? list.push(c) : false;
         //Filter by tags first, if successful, filter by searchUserInput
+
     })
     return list;
 }

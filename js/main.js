@@ -125,6 +125,12 @@ let renderAdvancedFiltersDom = () => {
 //All the algorithmic code to filter results happens here
 let applyQuery = (filter) => {
     let list = [];
+    let {
+        ingredients: fIng,
+        apparels: fApp,
+        ustensils: fUst,
+        searchUserInput: fSea
+    } = filter;
 
     cache.forEach(c => {
         let {
@@ -135,14 +141,12 @@ let applyQuery = (filter) => {
             ustensils
         } = c;
 
-        if (filter.apparels != "") {
-            if (filter.apparels.length > 0) {
-                filter.apparels.every(fIngredient => {
-                    return appliance === fIngredient ? true : false;
-                }) ? list.push(c) : false;
-            }
-        } else {
-            list.push(c);
+        if (fIng) {
+            fIng.every(name => {
+                return ingredients.some(e => {
+                    return e.ingredient === name ? true : false;
+                })
+            }) ? list.push(c) : false;
         }
         //Filter by tags first, if successful, filter by searchUserInput
     })

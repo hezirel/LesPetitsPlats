@@ -135,12 +135,10 @@ let applyQuery = (filter) => {
             ustensils
         } = c;
 
-        if (filter) {
-            if (filter.ingredients.length > 0) {
-                filter.ingredients.every(fIngredient => {
-                    return ingredients.some(e => {
-                        return e.ingredient === fIngredient ? true : false;
-                    })
+        if (filter.apparels != "") {
+            if (filter.apparels.length > 0) {
+                filter.apparels.every(fIngredient => {
+                    return appliance === fIngredient ? true : false;
                 }) ? list.push(c) : false;
             }
         } else {

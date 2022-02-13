@@ -143,10 +143,6 @@ let applyQuery = (filter) => {
         } = c;
 
         //Array from filters.every{1 false return block list.push}
-        conditionArray.every(c => {
-
-        }) ? list.push(c) : false;
-
 
         if (fIng) {
             fIng.every(name => {

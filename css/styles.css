@@ -66,6 +66,7 @@ body {
 .filterSelection a {
     padding: 0.5rem;
     color: white;
+    text-decoration: none;
 }
 
 .filterBox {
@@ -74,6 +75,10 @@ body {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
     column-gap: 1rem;
+}
+
+.filterBox input {
+    border-radius: 10px 0 0 10px;
 }
 
 .filterform {
@@ -85,6 +90,9 @@ body {
     height: 2.5rem;
 }
 
+.upperTagsGrid button {
+    border-radius: 0 10px 10px 0;
+}
 .upperTagsGrid button i {
     display: flex;
     justify-content: center;
@@ -112,6 +120,7 @@ body {
 .tagsDrawer > * {
     padding: 0.5rem;
     font-size: 20px;
+    text-decoration: none;
 }
 
 #resultOut {

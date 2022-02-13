@@ -94,14 +94,37 @@ let renderAdvancedFiltersDom = () => {
         let node = document.createElement('a');
         node.textContent = e;
         node.href = "#";
+
+        //Css styling choice doesn't allow for full click behavior
+
         node.addEventListener("mousedown", (e) => {
-            searchTagsDisplay.innerHTML += `<a class='tagsApp'>${e.target.innerText}</a>`
-            oUserQuery.apparels.push(e.target.innerText);
-            outFeed(applyQuery(oUserQuery));
+            //#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
+            if (!(oUserQuery.apparels.includes(e.target.innerText))) {
+                let a = document.createElement('a');
+
+                a.href = "#";
+                a.textContent = e.target.innerText;
+                a.classList.add("tagsApp");
+                oUserQuery.apparels.push(e.target.innerText);
+
+                a.addEventListener("click", (e) => {
+                    oUserQuery.apparels.splice(oUserQuery.apparels.indexOf(e.target.innerText), 1);
+                    searchTagsDisplay.removeChild(e.target);
+                    outFeed(applyQuery(oUserQuery));
+                })
+
+                oUserQuery.apparels.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
+
+                outFeed(applyQuery(oUserQuery));
+            }
         })
+
         if (!(oUserQuery.appUserInput === "")) {
+
             e.includes(oUserQuery.appUserInput) ? appDrawer.appendChild(node) : false;
+
         } else {
+
             appDrawer.appendChild(node);
         }
     });
@@ -110,14 +133,37 @@ let renderAdvancedFiltersDom = () => {
         let node = document.createElement('a');
         node.textContent = e;
         node.href = "#";
+
+        //Css styling choice doesn't allow for full click behavior
+
         node.addEventListener("mousedown", (e) => {
-            searchTagsDisplay.innerHTML += `<a class='tagsUst'>${e.target.innerText}</a>`
-            oUserQuery.ustensils.push(e.target.innerText);
-            outFeed(applyQuery(oUserQuery));
+            //#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
+            if (!(oUserQuery.ustensils.includes(e.target.innerText))) {
+                let a = document.createElement('a');
+
+                a.href = "#";
+                a.textContent = e.target.innerText;
+                a.classList.add("tagsUst");
+                oUserQuery.ustensils.push(e.target.innerText);
+
+                a.addEventListener("click", (e) => {
+                    oUserQuery.ustensils.splice(oUserQuery.ustensils.indexOf(e.target.innerText), 1);
+                    searchTagsDisplay.removeChild(e.target);
+                    outFeed(applyQuery(oUserQuery));
+                })
+
+                oUserQuery.ustensils.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
+
+                outFeed(applyQuery(oUserQuery));
+            }
         })
+
         if (!(oUserQuery.ustUserInput === "")) {
+
             e.includes(oUserQuery.ustUserInput) ? ustDrawer.appendChild(node) : false;
+
         } else {
+
             ustDrawer.appendChild(node);
         }
     });
@@ -136,7 +182,6 @@ let applyQuery = (filter) => {
 
     let aFilter = [fIng, fApp, fUst];
 
-    console.log(aFilter)
     cache.forEach(c => {
         let {
             name,
@@ -145,17 +190,21 @@ let applyQuery = (filter) => {
             appliance,
             ustensils
         } = c;
+
         let aIng = [];
-        console.log("START3")
         ingredients.forEach(e => {
-            console.log(e.ingredient);
             aIng.push(e.ingredient);
         })
+
         //Array from filters.every{1 false return block list.push}
         aFilter.every(r => {
             if (r.length > 0) {
                 return r.every(t => {
-                    return aIng.includes(t) ? true : false;
+                    if (aIng.includes(t) || appliance.includes(t) || ustensils.includes(t)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }) ? true : false;
             } else {
                 return true;

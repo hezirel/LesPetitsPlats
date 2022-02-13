@@ -9,6 +9,7 @@ window.onload = cacheFill();
 
 let outFeed = (data) => {
 
+    searchTagsDisplay.innerHTML = "";
     index.innerHTML = "";
     //#:Object function to reset all fields;
     tagsAvailable = {

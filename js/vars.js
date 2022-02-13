@@ -16,6 +16,8 @@ let appDrawer = document.querySelector("#tagsDrawerApp");
 let ustInput = document.querySelector("#tagsSearchInputUst");
 let ustDrawer = document.querySelector("#tagsDrawerUst");
 
+let inputs = [[ingInput, ingDrawer], [appInput, appDrawer], [ustInput, ustDrawer]];
+
 let cache;
 let oUserQuery = {
     ingredients: [],
@@ -38,39 +40,26 @@ searchInput.addEventListener('keyup', (e) => {
     }
 })
 
+inputs.forEach(e => {
 
-ingInput.addEventListener('focusin', () => {
-    ingDrawer.style.display = 'grid';
+    e[0].addEventListener('focusin', () => {
+        e[1].style.display = 'grid';
+    })
+
+    e[0].addEventListener('focusout', () => {
+        e[1].style.display = 'none';
+    })
 })
 
-ingInput.addEventListener('focusout', () => {
-    ingDrawer.style.display = 'none';
-})
 
 ingInput.addEventListener('keyup', () => {
     oUserQuery.ingUserInput = ingInput.value;
     renderAdvancedFiltersDom();
 })
 
-appInput.addEventListener('focusin', () => {
-    appDrawer.style.display = 'grid';
-})
-
-appInput.addEventListener('focusout', () => {
-    appDrawer.style.display = 'none';
-})
-
 appInput.addEventListener('keyup', () => {
     oUserQuery.appUserInput = appInput.value;
     renderAdvancedFiltersDom();
-})
-
-ustInput.addEventListener('focusin', () => {
-    ustDrawer.style.display = 'grid';
-})
-
-ustInput.addEventListener('focusout', () => {
-    ustDrawer.style.display = 'none';
 })
 
 ustInput.addEventListener('keyup', () => {

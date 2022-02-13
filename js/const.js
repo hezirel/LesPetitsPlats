@@ -44,8 +44,7 @@ const tagNode = (name, cat) => {
     a.addEventListener("mousedown", (e) => {
 
         oUserQuery.ingredients.includes(name) ?
-        ( oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(name), 1), 
-        searchTagsDisplay.removeChild(e.target)) : 
+        ( oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(name), 1)) : 
         oUserQuery.ingredients.push(name);
 
         outFeed(applyQuery(oUserQuery));

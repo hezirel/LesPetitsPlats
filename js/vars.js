@@ -33,7 +33,7 @@ searchInput.addEventListener('keyup', (e) => {
         oUserQuery.searchUserInput = searchInput.value;
         outFeed(applyQuery(oUserQuery));
     } else {
-        oUserQuery.searchUserInput = undefined;
+        oUserQuery.searchUserInput = "";
         outFeed(applyQuery(oUserQuery));
     }
 })

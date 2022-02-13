@@ -209,9 +209,16 @@ let applyQuery = (filter) => {
             } else {
                 return true;
             }
-        }) ? list.push(c) : false;
-        //Filter by tags first, if successful, filter by searchUserInput
-
+        }) ? ((fSea.length > 0) ? 
+            ((name.includes(fSea) || description.includes(fSea) || aIng.includes(fSea)) ? 
+                list.push(c) : false)
+                : list.push(c)) 
+        : false;
     })
     return list;
+}
+
+
+let cardAdder = (query, recipe) => {
+    return recipe.name.includes(query) ? recipe : null;
 }

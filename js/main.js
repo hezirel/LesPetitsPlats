@@ -60,7 +60,6 @@ let renderAdvancedFiltersDom = () => {
 
         node.addEventListener("mousedown", (e) => {
             //#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
-            //#:Add logic to remove e.innerText from oUserQuery.cat
             let a = document.createElement('a');
 
             a.href = "#";
@@ -136,14 +135,18 @@ let applyQuery = (filter) => {
             ustensils
         } = c;
 
-
-        //Filter by tags first, if successful, filter by searchUserInput
-        if (!(filter.searchUserInput === "")) {
-            name.includes(filter.searchUserInput) ? list.push(c) : false;
+        if (filter) {
+            if (filter.ingredients.length > 0) {
+                filter.ingredients.every(fIngredient => {
+                    return ingredients.some(e => {
+                        return e.ingredient === fIngredient ? true : false;
+                    })
+                }) ? list.push(c) : false;
+            }
         } else {
-            //#:logic for further filtering ?
             list.push(c);
         }
+        //Filter by tags first, if successful, filter by searchUserInput
     })
     return list;
 }

@@ -60,23 +60,24 @@ let renderAdvancedFiltersDom = () => {
 
         node.addEventListener("mousedown", (e) => {
             //#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
-            let a = document.createElement('a');
+            if (!(oUserQuery.ingredients.includes(e.target.innerText))) {
+                let a = document.createElement('a');
 
-            a.href = "#";
-            a.textContent = e.target.innerText;
-            a.classList.add("tagsIng");
-            oUserQuery.ingredients.push(e.target.innerText);
+                a.href = "#";
+                a.textContent = e.target.innerText;
+                a.classList.add("tagsIng");
+                oUserQuery.ingredients.push(e.target.innerText);
 
-            a.addEventListener("click", (e) => {
-                oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(e.target.innerText), 1);
-                searchTagsDisplay.removeChild(e.target);
+                a.addEventListener("click", (e) => {
+                    oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(e.target.innerText), 1);
+                    searchTagsDisplay.removeChild(e.target);
+                    outFeed(applyQuery(oUserQuery));
+                })
+
+                oUserQuery.ingredients.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
+
                 outFeed(applyQuery(oUserQuery));
-            })
-
-            oUserQuery.ingredients.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
-
-            outFeed(applyQuery(oUserQuery));
-
+            }
         })
 
         if (!(oUserQuery.ingUserInput === "")) {
@@ -140,6 +141,12 @@ let applyQuery = (filter) => {
             appliance,
             ustensils
         } = c;
+
+        //Array from filters.every{1 false return block list.push}
+        conditionArray.every(c => {
+
+        }) ? list.push(c) : false;
+
 
         if (fIng) {
             fIng.every(name => {

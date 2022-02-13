@@ -51,6 +51,9 @@ body {
     border-top-right-radius: 0;
 }
 
+*:focus {
+    outline: none;
+}
 .searchInputSubmit {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
@@ -79,6 +82,8 @@ body {
 
 .filterBox input {
     border-radius: 10px 0 0 10px;
+    padding: 1rem;
+    border: none;
 }
 
 .filterform {
@@ -130,7 +135,7 @@ body {
 }
 
 .resultNodeImg {
-    height: 20vh;
+    height: 15vh;
     background-color: var(--node-fig-bg);
     margin: 0;
 }
@@ -138,6 +143,10 @@ body {
 .resultNode,
 .resultNodeInfo {
     background-color: var(--node-body-bg);
+}
+
+.resultNode {
+    /* max-height: 25vh; */
 }
 
 .resultNodeInfo {
@@ -179,8 +188,8 @@ body {
 
 .resultNodeBody>p {
     align-self: start;
+    max-height: 10vh;
     justify-self: start;
-    max-height: 20vh;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;

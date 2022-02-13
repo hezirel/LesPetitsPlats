@@ -24,7 +24,7 @@ let oUserQuery = {
     ingUserInput: "",
     appUserInput: "",
     ustUserInput: "",
-    searchUserInput: "",
+    searchUserInput: ""
 };
 let tagsAvailable = oUserQuery;
 

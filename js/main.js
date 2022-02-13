@@ -10,6 +10,7 @@ window.onload = cacheFill();
 let outFeed = (data) => {
 
     index.innerHTML = "";
+    //#:Object function to reset all fields;
     tagsAvailable = {
         ingredients: [],
         apparels: [],
@@ -39,7 +40,16 @@ let outFeed = (data) => {
     tagsAvailable.apparels = [...new Set(tagsAvailable.apparels)];
     tagsAvailable.ustensils = [...new Set(tagsAvailable.ustensils)];
 
+    renderSelFilters(oUserQuery.ingredients, 1);
     renderAdvancedFiltersDom();
+}
+
+let renderSelFilters = (arr, cat) => {
+
+    arr.forEach(e => {
+        searchTagsDisplay.appendChild(tagNode(e, cat))
+    })
+
 }
 
 let renderAdvancedFiltersDom = () => {
@@ -52,33 +62,7 @@ let renderAdvancedFiltersDom = () => {
     //#:refactorize tagsAvailable button list constructors
     tagsAvailable.ingredients.forEach(e => {
 
-        let node = document.createElement('a');
-        node.textContent = e;
-        node.href = "#";
-
-        //Css styling choice doesn't allow for full click behavior
-
-        node.addEventListener("mousedown", (e) => {
-            //#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
-            if (!(oUserQuery.ingredients.includes(e.target.innerText))) {
-                let a = document.createElement('a');
-
-                a.href = "#";
-                a.textContent = e.target.innerText;
-                a.classList.add("tagsIng");
-                oUserQuery.ingredients.push(e.target.innerText);
-
-                a.addEventListener("click", (e) => {
-                    oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(e.target.innerText), 1);
-                    searchTagsDisplay.removeChild(e.target);
-                    outFeed(applyQuery(oUserQuery));
-                })
-
-                oUserQuery.ingredients.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
-
-                outFeed(applyQuery(oUserQuery));
-            }
-        })
+        let node = tagNode(e, 1);
 
         if (!(oUserQuery.ingUserInput === "")) {
 
@@ -184,8 +168,6 @@ let applyQuery = (filter) => {
 
     cache.forEach(c => {
         let {
-            name,
-            description,
             ingredients,
             appliance,
             ustensils
@@ -198,27 +180,27 @@ let applyQuery = (filter) => {
 
         //Array from filters.every{1 false return block list.push}
         aFilter.every(r => {
-            if (r.length > 0) {
-                return r.every(t => {
-                    if (aIng.includes(t) || appliance.includes(t) || ustensils.includes(t)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }) ? true : false;
-            } else {
-                return true;
-            }
-        }) ? ((fSea.length > 0) ? 
-            ((name.includes(fSea) || description.includes(fSea) || aIng.includes(fSea)) ? 
-                list.push(c) : false)
-                : list.push(c)) 
-        : false;
+                if (r.length > 0) {
+                    return r.every(t => {
+                        if (aIng.includes(t) || appliance.includes(t) || ustensils.includes(t)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }) ? true : false;
+                } else {
+                    return true;
+                }
+            }) ? ((fSea.length > 0) ?
+                ((cardAdder(fSea, c, aIng)) ?
+                    list.push(c) : false) :
+                list.push(c)) :
+            false;
     })
     return list;
 }
 
 
-let cardAdder = (query, recipe) => {
-    return recipe.name.includes(query) ? recipe : null;
+let cardAdder = (query, recipe, ings) => {
+    return (recipe.name.includes(query) || recipe.description.includes(query) || ings.includes(query))
 }

@@ -32,3 +32,23 @@ const cardNode = (obj) => {
 
     return elt;
 }
+
+const tagNode = (name, cat) => {
+
+    let a = document.createElement('a');
+
+    a.href = "#";
+    a.textContent = name;
+    a.classList.add(`tagsIng`);
+
+    a.addEventListener("mousedown", (e) => {
+
+        oUserQuery.ingredients.includes(name) ?
+        ( oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(name), 1), 
+        searchTagsDisplay.removeChild(e.target)) : 
+        oUserQuery.ingredients.push(name);
+
+        outFeed(applyQuery(oUserQuery));
+    })
+    return a;
+}

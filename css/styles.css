@@ -6,20 +6,9 @@
     --node-body-bg: rgb(231, 231, 231);
 }
 
-.ingBg {
-    background-color: #3075FB;
-}
-
-.appBg {
-    background-color: #00E1A7;
-}
-.ustBg {
-    background-color: #FF5143;
-}
 .tagsApp {
     background-color: var(--app);
 }
-
 
 .tagsIng {
     background-color: var(--ing);
@@ -93,14 +82,14 @@ body {
 
 .upperTagsGrid {
     display: flex;
-    height: 3rem;
+    height: 2.5rem;
 }
 
 .upperTagsGrid button i {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0.3rem;
 }
 
 .filterForm *,

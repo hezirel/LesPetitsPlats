@@ -1,11 +1,14 @@
 const cacheFill = async () => {
+
     cache = await dataFetch();
     outFeed(cache);
+
 }
 
 window.onload = cacheFill();
 
 let outFeed = (data) => {
+
     index.innerHTML = "";
     tagsAvailable = {
         ingredients: [],
@@ -16,6 +19,7 @@ let outFeed = (data) => {
         ustUserInput: "",
         searchUserInput: "",
     }
+
     data.forEach((e) => {
 
         e.ingredients.forEach((e) => {
@@ -47,18 +51,41 @@ let renderAdvancedFiltersDom = () => {
 
     //#:refactorize tagsAvailable button list constructors
     tagsAvailable.ingredients.forEach(e => {
+
         let node = document.createElement('a');
         node.textContent = e;
         node.href = "#";
+
+        //Css styling choice doesn't allow for full click behavior
+
         node.addEventListener("mousedown", (e) => {
             //#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
-            searchTagsDisplay.innerHTML += `<a class='ingBg'>${e.target.innerText}</a>`
+            //#:Add logic to remove e.innerText from oUserQuery.cat
+            let a = document.createElement('a');
+
+            a.href = "#";
+            a.textContent = e.target.innerText;
+            a.classList.add("tagsIng");
             oUserQuery.ingredients.push(e.target.innerText);
+
+            a.addEventListener("click", (e) => {
+                oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(e.target.innerText), 1);
+                searchTagsDisplay.removeChild(e.target);
+                outFeed(applyQuery(oUserQuery));
+            })
+
+            oUserQuery.ingredients.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
+
             outFeed(applyQuery(oUserQuery));
+
         })
+
         if (!(oUserQuery.ingUserInput === "")) {
+
             e.includes(oUserQuery.ingUserInput) ? ingDrawer.appendChild(node) : false;
+
         } else {
+
             ingDrawer.appendChild(node);
         }
     });
@@ -68,7 +95,7 @@ let renderAdvancedFiltersDom = () => {
         node.textContent = e;
         node.href = "#";
         node.addEventListener("mousedown", (e) => {
-            searchTagsDisplay.innerHTML += `<a class='appBg'>${e.target.innerText}</a>`
+            searchTagsDisplay.innerHTML += `<a class='tagsApp'>${e.target.innerText}</a>`
             oUserQuery.apparels.push(e.target.innerText);
             outFeed(applyQuery(oUserQuery));
         })
@@ -84,7 +111,7 @@ let renderAdvancedFiltersDom = () => {
         node.textContent = e;
         node.href = "#";
         node.addEventListener("mousedown", (e) => {
-            searchTagsDisplay.innerHTML += `<a class='ustBg'>${e.target.innerText}</a>`
+            searchTagsDisplay.innerHTML += `<a class='tagsUst'>${e.target.innerText}</a>`
             oUserQuery.ustensils.push(e.target.innerText);
             outFeed(applyQuery(oUserQuery));
         })
@@ -109,6 +136,8 @@ let applyQuery = (filter) => {
             ustensils
         } = c;
 
+
+        //Filter by tags first, if successful, filter by searchUserInput
         if (!(filter.searchUserInput === "")) {
             name.includes(filter.searchUserInput) ? list.push(c) : false;
         } else {

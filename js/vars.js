@@ -1,4 +1,5 @@
 const dataFetch = () => fetch("./js/data.json").then(res => res.json());
+
 let index = document.querySelector("#resultOut");
 let searchTagsDisplay = document.querySelector(".filterSelection");
 

@@ -30,7 +30,7 @@ let outFeed = (data) => {
 	});
 
 	Object.keys(tagsAvailable).forEach((key) => {
-		key = [...new Set(key)];
+		tagsAvailable[key] = [...new Set(tagsAvailable[key])];
 	});
 
 	//#:Change this with proxy so filters redraw dosesn't have to happen every time

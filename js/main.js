@@ -29,9 +29,7 @@ let outFeed = (data) => {
 		index.appendChild(cardNode(e));
 	});
 
-	Object.keys(tagsAvailable).forEach((key) => {
-		tagsAvailable[key] = [...new Set(tagsAvailable[key])];
-	});
+	tagsAvailable.uniq();
 
 	//#:Change this with proxy so filters redraw dosesn't have to happen every time
 	renderSelFilters(oUserQuery.ingredients, 1);

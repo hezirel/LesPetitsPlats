@@ -30,6 +30,11 @@ class Tags {
 		this.apparels = [];
 		this.ustensils = [];
 	}
+	uniq() {
+		Object.keys(this).forEach((key) => {
+			this[key] = [...new Set(this[key])];
+		});
+	}
 }
 
 class UserQuery extends Tags {

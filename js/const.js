@@ -37,6 +37,7 @@ const tagNode = (name, cat) => {
 
 	let a = document.createElement("a");
 
+	//#:({'base' : 'corresponding'})[cat];
 	a.href = "#";
 	a.textContent = name;
 	a.classList.add("tagsIng");

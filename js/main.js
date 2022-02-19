@@ -12,7 +12,7 @@ let outFeed = (data) => {
 	searchTagsDisplay.innerHTML = "";
 	index.innerHTML = "";
 
-	tagsAvailable = new Tags();
+	let tagsAvailable = new Tags();
 
 	data.forEach((e) => {
 
@@ -33,10 +33,12 @@ let outFeed = (data) => {
 		key = [...new Set(key)];
 	});
 
+	//#:Change this with proxy so filters redraw dosesn't have to happen every time
 	renderSelFilters(oUserQuery.ingredients, 1);
-	renderAdvancedFiltersDom();
+	renderAdvancedFiltersDom(tagsAvailable);
 };
 
+//#:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
 let renderSelFilters = (arr, cat) => {
 
 	arr.forEach(e => {
@@ -45,7 +47,7 @@ let renderSelFilters = (arr, cat) => {
 
 };
 
-let renderAdvancedFiltersDom = () => {
+let renderAdvancedFiltersDom = (tagsAv) => {
 
 	//Reset tags drawer content
 	tagsDrawers.forEach(e => {
@@ -53,7 +55,7 @@ let renderAdvancedFiltersDom = () => {
 	});
 
 	//#:refactorize tagsAvailable button list constructors
-	tagsAvailable.ingredients.forEach(e => {
+	tagsAv.ingredients.forEach(e => {
 
 		let node = tagNode(e, 1);
 
@@ -64,7 +66,7 @@ let renderAdvancedFiltersDom = () => {
 		}
 	});
 
-	tagsAvailable.apparels.forEach(e => {
+	tagsAv.apparels.forEach(e => {
 		let node = document.createElement("a");
 		node.textContent = e;
 		node.href = "#";
@@ -103,7 +105,7 @@ let renderAdvancedFiltersDom = () => {
 		}
 	});
 
-	tagsAvailable.ustensils.forEach(e => {
+	tagsAv.ustensils.forEach(e => {
 		let node = document.createElement("a");
 		node.textContent = e;
 		node.href = "#";
@@ -145,6 +147,7 @@ let renderAdvancedFiltersDom = () => {
 
 //All the algorithmic code to filter results happens here
 let applyQuery = (filter) => {
+
 	let list = [];
 
 	let {
@@ -190,6 +193,7 @@ let applyQuery = (filter) => {
 	return list;
 };
 
+//#:Function to change for native loop branch
 let cardAdder = (query, recipe, ings) => {
 	return (recipe.name.includes(query) || recipe.description.includes(query) || ings.includes(query));
 };

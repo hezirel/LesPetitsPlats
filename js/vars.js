@@ -67,7 +67,6 @@ inputs.forEach(e => {
 	});
 });
 
-
 ingInput.addEventListener("keyup", () => {
 	oUserQuery.ingUserInput = ingInput.value;
 	renderAdvancedFiltersDom();

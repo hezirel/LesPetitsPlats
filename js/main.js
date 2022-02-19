@@ -29,9 +29,9 @@ let outFeed = (data) => {
 		index.appendChild(cardNode(e));
 	});
 
-	tagsAvailable.ingredients = [...new Set(tagsAvailable.ingredients)];
-	tagsAvailable.apparels = [...new Set(tagsAvailable.apparels)];
-	tagsAvailable.ustensils = [...new Set(tagsAvailable.ustensils)];
+	Object.keys(tagsAvailable).forEach((key) => {
+		key = [...new Set(key)];
+	});
 
 	renderSelFilters(oUserQuery.ingredients, 1);
 	renderAdvancedFiltersDom();

@@ -9,26 +9,14 @@ window.onload = cacheFill();
 
 let outFeed = (data) => {
 
-	index.innerHTML = "";
-
+	while (index.firstChild) {
+		index.removeChild(index.firstChild);
+	}
 	tagsAvailable = new Tags().populate(data).uniq();
 	tagsAvailable.renderFiltersDOM();
-	//#:replace with func ? send new Tags to it
-
-	//#:should happen above index.appendchild
-	renderSelFilters(oUserQuery.ingredients, 0);
-	renderSelFilters(oUserQuery.apparels, 1);
-	renderSelFilters(oUserQuery.ustensils, 2);
 };
 
 //¿:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
-let renderSelFilters = (arr, cat) => {
-
-	arr.forEach(e => {
-		searchTagsDisplay.appendChild(new tagNode(e, cat));
-	});
-
-};
 
 //All the algorithmic code to filter results happens here
 //€:circumvent useless comparison code if no filters to speed up query

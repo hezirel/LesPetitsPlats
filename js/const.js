@@ -47,7 +47,8 @@ class filterNode  {
 
 		a.addEventListener("mousedown", (e) => {
 
-			oUserQuery[`${propApply(cat)}`].push(name);
+			oUserQuery[`${propApply(cat)}`].push(e.target.textContent);
+			searchTagsDisplay.appendChild(new tagNode(e.target.textContent, cat));
 			outFeed(applyQuery(oUserQuery));
 
 		});

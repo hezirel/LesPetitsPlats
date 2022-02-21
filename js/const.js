@@ -49,6 +49,7 @@ class filterNode  {
 
 			oUserQuery[`${propApply(cat)}`].push(e.target.textContent);
 			searchTagsDisplay.appendChild(new tagNode(e.target.textContent, cat));
+			inputs[cat].value = "";
 			outFeed(applyQuery(oUserQuery));
 
 		});

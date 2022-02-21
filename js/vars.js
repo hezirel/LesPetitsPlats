@@ -59,19 +59,6 @@ class Tags {
 		return this;
 	}
 
-	renderFiltersDOM() {
-		Object.keys(this).forEach((e, index) => {
-			while (drawers[index].firstChild) {
-				drawers[index].removeChild(drawers[index].firstChild);
-			}
-			this[e].forEach((f) => {
-				if (!(oUserQuery[`${propApply(index)}`].includes(f))) {
-					drawers[index].appendChild(new filterNode(f, index));
-				}
-			});
-		});
-	}
-
 	renderFilteredDrawer(query, cat) {
 		//€:no need to display tag if already selected
 		while (drawers[cat].firstChild) {
@@ -89,15 +76,19 @@ class Tags {
 		}
 		);
 	} 
+
+	renderFiltersDOM() {
+		Object.keys(this).forEach((e, index) => {
+			this.renderFilteredDrawer("", index);
+		});
+	}
+
 }
 
 class UserQuery extends Tags {
 
 	constructor() {
 		super();
-		this.ingUserInput = "";
-		this.appUserInput = "";
-		this.ustUserInput = "";
 		this.searchUserInput = "";
 	}
 }
@@ -114,7 +105,7 @@ searchInput.addEventListener("keyup", (e) => {
 	}
 });
 
-tagsDisplay.forEach(e => {
+tagsDisplay.forEach((e, index) => {
 
 	e[0].addEventListener("focusin", () => {
 		e[1].style.display = "grid";
@@ -123,12 +114,10 @@ tagsDisplay.forEach(e => {
 	e[0].addEventListener("focusout", () => {
 		e[1].style.display = "none";
 	});
-});
 
-//€:Add listener to all inputs for filtering filters selection list
-inputs.forEach((i, index) => {
-	i.addEventListener("keyup", () => {
-		oUserQuery[`${css2Apply(index)}UserInput`] = i.value;
-		tagsAvailable.renderFilteredDrawer(i.value, index);
+	//€:Add listener to all inputs for filtering filters selection list
+	e[0].addEventListener("keyup", () => {
+		tagsAvailable.renderFilteredDrawer(e[0].value, index);
 	});
+
 });

@@ -17,11 +17,13 @@ let appDrawer = document.querySelector("#tagsDrawerApp");
 let ustInput = document.querySelector("#tagsSearchInputUst");
 let ustDrawer = document.querySelector("#tagsDrawerUst");
 
-let inputs = [
+let tagsDisplay = [
 	[ingInput, ingDrawer],
 	[appInput, appDrawer],
 	[ustInput, ustDrawer]
 ];
+
+let inputs = [ingInput, appInput, ustInput];
 
 let drawers = [ingDrawer, appDrawer, ustDrawer];
 
@@ -68,9 +70,9 @@ class Tags {
 			this[e].forEach((f) => {
 				let input = oUserQuery[`${css2Apply(index)}UserInput`];
 				if (!(input === "")) {
-					f.includes(input) ? drawers[index].appendChild(filterNode(f, index)) : false;
+					f.includes(input) ? drawers[index].appendChild(new filterNode(f, index)) : false;
 				} else {
-					drawers[index].appendChild(filterNode(f, index));
+					drawers[index].appendChild(new filterNode(f, index));
 				}
 			});
 		});
@@ -87,7 +89,7 @@ class UserQuery extends Tags {
 		this.searchUserInput = "";
 	}
 
-	//#:UserQuery method to filter list of advanced tags ?
+	//#:UserQuery method to render selected tags
 	renderSelectedFilters() {
 
 	}
@@ -105,7 +107,7 @@ searchInput.addEventListener("keyup", (e) => {
 	}
 });
 
-inputs.forEach(e => {
+tagsDisplay.forEach(e => {
 
 	e[0].addEventListener("focusin", () => {
 		e[1].style.display = "grid";
@@ -116,18 +118,9 @@ inputs.forEach(e => {
 	});
 });
 
-ingInput.addEventListener("keyup", () => {
-	oUserQuery.ingUserInput = ingInput.value;
-	//#:need to pass tagsAvailable to function
-	tagsAvailable.renderFiltersDOM(oUserQuery);
-});
-
-appInput.addEventListener("keyup", () => {
-	oUserQuery.appUserInput = appInput.value;
-	tagsAvailable.renderFiltersDOM(oUserQuery);
-});
-
-ustInput.addEventListener("keyup", () => {
-	oUserQuery.ustUserInput = ustInput.value;
-	tagsAvailable.renderFiltersDOM(oUserQuery);
+//€:Add listener to all inputs for filtering filters selection list
+inputs.forEach((i, index) => {
+	i.addEventListener("keyup", () => {
+		oUserQuery[`${css2Apply(index)}UserInput`] = i.value;
+		tagsAvailable.renderFiltersDOM(oUserQuery);});
 });

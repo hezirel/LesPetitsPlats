@@ -21,17 +21,17 @@ let outFeed = (data) => {
 	renderSelFilters(oUserQuery.ustensils, 2);
 };
 
-//#:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
+//¿:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
 let renderSelFilters = (arr, cat) => {
 
 	arr.forEach(e => {
-		searchTagsDisplay.appendChild(filterNode(e, cat));
+		searchTagsDisplay.appendChild(new tagNode(e, cat));
 	});
 
 };
 
 //All the algorithmic code to filter results happens here
-//#:filter default value ? none return cache ?
+//€:circumvent useless comparison code if no filters to speed up query
 let applyQuery = (filter = null) => {
 
 	if (!filter) {

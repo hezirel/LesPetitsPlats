@@ -35,45 +35,77 @@ class cardNode {
 }
 
 //#:change to class filterNode => tagNode extends this & add close button;
-const filterNode = (name, cat) => {
+class filterNode  {
 
-	let a = document.createElement("a");
+	constructor(name, cat) {
 
-	a.href = "#";
-	a.textContent = name;
-	a.classList.add(`tags${cssApply(cat)}`);
+		let a = document.createElement("a");
 
-	a.addEventListener("mousedown", (e) => {
+		a.href = "#";
+		a.textContent = name;
+		a.classList.add(`tags${cssApply(cat)}`);
 
-		// oUserQuery[`${propApply(cat)}`].includes(name) ?
-		// 	( oUserQuery[`${propApply(cat)}`].splice(oUserQuery[`${propApply(cat)}`].indexOf(name), 1)) : 
-		oUserQuery[`${propApply(cat)}`].push(name);
+		a.addEventListener("mousedown", (e) => {
 
-		outFeed(applyQuery(oUserQuery));
-	});
-	return a;
-};
+			oUserQuery[`${propApply(cat)}`].push(name);
+			outFeed(applyQuery(oUserQuery));
 
+		});
+
+		return a;
+	}
+}
+
+class tagNode extends filterNode {
+	constructor(e, cat) {
+
+		let a = super(e, cat);
+		a = a.cloneNode(true);
+
+		//#:add icon
+
+		a.addEventListener("click", (b) => {
+
+			oUserQuery[`${propApply(cat)}`].includes(e) ?
+				( oUserQuery[`${propApply(cat)}`].splice(oUserQuery[`${propApply(cat)}`].indexOf(e), 1)) : false;
+
+			b.target.remove(b.target);
+
+			outFeed(applyQuery(oUserQuery));
+
+		});
+
+		return a;
+	}
+}
+
+//¿:Naming convention workaround => Refactorize for improvement
 const cssApply = (cat) => {
+
 	return ({
 		0: "Ing",
 		1: "App",
 		2: "Ust"
 	})[cat];
+
 };
 
 const css2Apply = (cat) => {
+	
 	return ({
 		0: "ing",
 		1: "app",
 		2: "ust"
 	})[cat];
+
 };
 
 const propApply = (cat) => {
+
 	return ({
 		0: "ingredients",
 		1: "apparels",
 		2: "ustensils"
 	})[cat];
+
 };

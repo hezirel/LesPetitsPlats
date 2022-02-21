@@ -40,13 +40,13 @@ const tagNode = (name, cat) => {
 
 	a.href = "#";
 	a.textContent = name;
-	a.classList.add("tagsIng");
+	a.classList.add(`tags${cssApply(cat)}`);
 
 	a.addEventListener("mousedown", (e) => {
 
-		oUserQuery.ingredients.includes(name) ?
-			( oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(name), 1)) : 
-			oUserQuery.ingredients.push(name);
+		oUserQuery[`${propApply(cat)}`].includes(name) ?
+			( oUserQuery[`${propApply(cat)}`].splice(oUserQuery[`${propApply(cat)}`].indexOf(name), 1)) : 
+			oUserQuery[`${propApply(cat)}`].push(name);
 
 		//#:Change behavior
 		outFeed(applyQuery(oUserQuery));
@@ -55,6 +55,25 @@ const tagNode = (name, cat) => {
 };
 
 const cssApply = (cat) => {
-	//#:({'base' : 'corresponding'})[cat];
-	//return [cssName, propName];
-}
+	return ({
+		0: "Ing",
+		1: "App",
+		2: "Ust"
+	})[cat];
+};
+
+const css2Apply = (cat) => {
+	return ({
+		0: "ing",
+		1: "app",
+		2: "ust"
+	})[cat];
+};
+
+const propApply = (cat) => {
+	return ({
+		0: "ingredients",
+		1: "apparels",
+		2: "ustensils"
+	})[cat];
+};

@@ -1,7 +1,7 @@
 const cacheFill = async () => {
 
 	cache = await dataFetch();
-	outFeed(applyQuery(null));
+	outFeed(cache);
 
 };
 
@@ -15,13 +15,13 @@ let outFeed = (data) => {
 	let tagsAvailable = new Tags();
 	tagsAvailable.populate(data);
 	tagsAvailable.uniq();
-	console.log(tagsAvailable);
+	tagsAvailable.renderFiltersDOM();
 	//#:replace with func ? send new Tags to it
 
-	//#:Change this with proxy so filters redraw dosesn't have to happen every time
 	//#:should happen above index.appendchild
-	renderSelFilters(oUserQuery.ingredients, 1);
-	renderAdvancedFiltersDom(tagsAvailable);
+	renderSelFilters(oUserQuery.ingredients, 0);
+	renderSelFilters(oUserQuery.apparels, 1);
+	renderSelFilters(oUserQuery.ustensils, 2);
 };
 
 //#:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
@@ -33,109 +33,9 @@ let renderSelFilters = (arr, cat) => {
 
 };
 
-let renderAdvancedFiltersDom = (tagsAv) => {
-
-	//Reset tags drawer content
-	tagsDrawers.forEach(e => {
-		while (e.firstChild) {
-			e.removeChild(e.firstChild);
-		}
-	});
-
-	//#:refactorize tagsAvailable button list constructors
-	tagsAv.ingredients.forEach(e => {
-
-		let node = tagNode(e, 1);
-
-		if (!(oUserQuery.ingUserInput === "")) {
-			e.includes(oUserQuery.ingUserInput) ? ingDrawer.appendChild(node) : false;
-		} else {
-			ingDrawer.appendChild(node);
-		}
-	});
-
-	tagsAv.apparels.forEach(e => {
-		let node = document.createElement("a");
-		node.textContent = e;
-		node.href = "#";
-
-		//Css styling choice doesn't allow for full click behavior
-
-		node.addEventListener("mousedown", (e) => {
-			//#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
-			if (!(oUserQuery.apparels.includes(e.target.innerText))) {
-				let a = document.createElement("a");
-
-				a.href = "#";
-				a.textContent = e.target.innerText;
-				a.classList.add("tagsApp");
-				oUserQuery.apparels.push(e.target.innerText);
-
-				a.addEventListener("click", (e) => {
-					oUserQuery.apparels.splice(oUserQuery.apparels.indexOf(e.target.innerText), 1);
-					searchTagsDisplay.removeChild(e.target);
-					outFeed(applyQuery(oUserQuery));
-				});
-
-				oUserQuery.apparels.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
-
-				outFeed(applyQuery(oUserQuery));
-			}
-		});
-
-		if (!(oUserQuery.appUserInput === "")) {
-
-			e.includes(oUserQuery.appUserInput) ? appDrawer.appendChild(node) : false;
-
-		} else {
-
-			appDrawer.appendChild(node);
-		}
-	});
-
-	tagsAv.ustensils.forEach(e => {
-		let node = document.createElement("a");
-		node.textContent = e;
-		node.href = "#";
-
-		//Css styling choice doesn't allow for full click behavior
-
-		node.addEventListener("mousedown", (e) => {
-			//#:createElt, addClassList class => ("Ing":"ingBG" ...)[tags.cat]
-			if (!(oUserQuery.ustensils.includes(e.target.innerText))) {
-				let a = document.createElement("a");
-
-				a.href = "#";
-				a.textContent = e.target.innerText;
-				a.classList.add("tagsUst");
-				oUserQuery.ustensils.push(e.target.innerText);
-
-				a.addEventListener("click", (e) => {
-					oUserQuery.ustensils.splice(oUserQuery.ustensils.indexOf(e.target.innerText), 1);
-					searchTagsDisplay.removeChild(e.target);
-					outFeed(applyQuery(oUserQuery));
-				});
-
-				oUserQuery.ustensils.includes(node.innerText) ? searchTagsDisplay.appendChild(a) : false;
-
-				outFeed(applyQuery(oUserQuery));
-			}
-		});
-
-		if (!(oUserQuery.ustUserInput === "")) {
-
-			e.includes(oUserQuery.ustUserInput) ? ustDrawer.appendChild(node) : false;
-
-		} else {
-
-			ustDrawer.appendChild(node);
-		}
-	});
-};
-
 //All the algorithmic code to filter results happens here
 //#:filter default value ? none return cache ?
-let applyQuery = (filter) => {
+let applyQuery = (filter = null) => {
 
 	if (!filter) {
 		return cache;

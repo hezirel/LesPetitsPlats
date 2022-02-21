@@ -23,6 +23,8 @@ let inputs = [
 	[ustInput, ustDrawer]
 ];
 
+let drawers = [ingDrawer, appDrawer, ustDrawer];
+
 class Tags {
 
 	constructor() {
@@ -53,21 +55,24 @@ class Tags {
 		});
 	}
 
-	renderFiltersDOM(query) {
+	renderFiltersDOM(query = null) {
 		//#:convert to arrow function
 		tagsDrawers.forEach(e => {
-			e.removeChild();
+			while (e.firstChild) {
+				e.removeChild(e.firstChild);
+			}
 		});
 
 		Object.keys(this).forEach((e, index) => {
-
-			let node = tagNode(e, index);
-
-			if (!(oUserQuery.ingUserInput === "")) {
-				e.includes(oUserQuery.ingUserInput) ? ingDrawer.appendChild(node) : false;
-			} else {
-				ingDrawer.appendChild(node);
-			}
+			this[e].forEach((f) => {
+				let node = tagNode(f, index);
+				console.log(node);
+				if (!(oUserQuery[`${css2Apply(index)}UserInput`] === "")) {
+					e.includes(oUserQuery[`${css2Apply(index)}UserInput`]) ? drawers[index].appendChild(node) : false;
+				} else {
+					drawers[index].appendChild(node);
+				}
+			});
 		});
 	}
 }

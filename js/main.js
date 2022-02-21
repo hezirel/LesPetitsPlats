@@ -1,7 +1,7 @@
 const cacheFill = async () => {
 
 	cache = await dataFetch();
-	outFeed(cache);
+	outFeed(applyQuery(null));
 
 };
 
@@ -13,25 +13,13 @@ let outFeed = (data) => {
 	index.innerHTML = "";
 
 	let tagsAvailable = new Tags();
-
-	data.forEach((e) => {
-
-		e.ingredients.forEach((e) => {
-			tagsAvailable.ingredients.push(e.ingredient);
-		});
-
-		tagsAvailable.apparels.push(e.appliance);
-
-		e.ustensils.forEach((e) => {
-			tagsAvailable.ustensils.push(e);
-		});
-
-		index.appendChild(cardNode(e));
-	});
-
+	tagsAvailable.populate(data);
 	tagsAvailable.uniq();
+	console.log(tagsAvailable);
+	//#:replace with func ? send new Tags to it
 
 	//#:Change this with proxy so filters redraw dosesn't have to happen every time
+	//#:should happen above index.appendchild
 	renderSelFilters(oUserQuery.ingredients, 1);
 	renderAdvancedFiltersDom(tagsAvailable);
 };
@@ -49,7 +37,9 @@ let renderAdvancedFiltersDom = (tagsAv) => {
 
 	//Reset tags drawer content
 	tagsDrawers.forEach(e => {
-		e.innerHTML = "";
+		while (e.firstChild) {
+			e.removeChild(e.firstChild);
+		}
 	});
 
 	//#:refactorize tagsAvailable button list constructors
@@ -144,7 +134,12 @@ let renderAdvancedFiltersDom = (tagsAv) => {
 };
 
 //All the algorithmic code to filter results happens here
+//#:filter default value ? none return cache ?
 let applyQuery = (filter) => {
+
+	if (!filter) {
+		return cache;
+	}
 
 	let list = [];
 

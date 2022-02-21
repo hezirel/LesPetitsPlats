@@ -33,6 +33,7 @@ const cardNode = (obj) => {
 	return elt;
 };
 
+//#:change to class
 const tagNode = (name, cat) => {
 
 	let a = document.createElement("a");
@@ -47,6 +48,7 @@ const tagNode = (name, cat) => {
 			( oUserQuery.ingredients.splice(oUserQuery.ingredients.indexOf(name), 1)) : 
 			oUserQuery.ingredients.push(name);
 
+		//#:Change behavior
 		outFeed(applyQuery(oUserQuery));
 	});
 	return a;

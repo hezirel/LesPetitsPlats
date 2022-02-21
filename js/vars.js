@@ -30,9 +30,44 @@ class Tags {
 		this.apparels = [];
 		this.ustensils = [];
 	}
+
+	populate(recipes) {
+		recipes.forEach((e) => {
+
+			e.ingredients.forEach((e) => {
+				this.ingredients.push(e.ingredient);
+			});
+	
+			this.apparels.push(e.appliance);
+	
+			e.ustensils.forEach((e) => {
+				this.ustensils.push(e);
+			});
+			index.appendChild(cardNode(e));
+		});
+	}
+
 	uniq() {
 		Object.keys(this).forEach((key) => {
 			this[key] = [...new Set(this[key])];
+		});
+	}
+
+	renderFiltersDOM(query) {
+		//#:convert to arrow function
+		tagsDrawers.forEach(e => {
+			e.removeChild();
+		});
+
+		Object.keys(this).forEach((e, index) => {
+
+			let node = tagNode(e, index);
+
+			if (!(oUserQuery.ingUserInput === "")) {
+				e.includes(oUserQuery.ingUserInput) ? ingDrawer.appendChild(node) : false;
+			} else {
+				ingDrawer.appendChild(node);
+			}
 		});
 	}
 }
@@ -46,7 +81,10 @@ class UserQuery extends Tags {
 		this.ustUserInput = "";
 		this.searchUserInput = "";
 	}
+	//#:UserQuery => recipe compare, if match return recipe
+	renderSelectedFilters() {
 
+	}
 }
 
 let oUserQuery = new UserQuery();
@@ -74,6 +112,7 @@ inputs.forEach(e => {
 
 ingInput.addEventListener("keyup", () => {
 	oUserQuery.ingUserInput = ingInput.value;
+	//#:need to pass tagsAvailable to function
 	renderAdvancedFiltersDom();
 });
 

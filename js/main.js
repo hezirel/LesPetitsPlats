@@ -5,6 +5,7 @@ const cacheFill = async () => {
 
 };
 
+let oUserQuery = new UserQuery();
 window.onload = cacheFill();
 
 let outFeed = (data) => {

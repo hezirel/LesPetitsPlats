@@ -9,12 +9,9 @@ window.onload = cacheFill();
 
 let outFeed = (data) => {
 
-	searchTagsDisplay.innerHTML = "";
 	index.innerHTML = "";
 
-	let tagsAvailable = new Tags();
-	tagsAvailable.populate(data);
-	tagsAvailable.uniq();
+	tagsAvailable = new Tags().populate(data).uniq();
 	tagsAvailable.renderFiltersDOM();
 	//#:replace with func ? send new Tags to it
 
@@ -28,7 +25,7 @@ let outFeed = (data) => {
 let renderSelFilters = (arr, cat) => {
 
 	arr.forEach(e => {
-		searchTagsDisplay.appendChild(tagNode(e, cat));
+		searchTagsDisplay.appendChild(filterNode(e, cat));
 	});
 
 };

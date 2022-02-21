@@ -1,5 +1,5 @@
 const dataFetch = () => fetch("./js/data.json").then(res => res.json());
-let cache;
+let cache, tagsAvailable;
 
 let index = document.querySelector("#resultOut");
 let searchTagsDisplay = document.querySelector(".filterSelection");
@@ -33,6 +33,13 @@ class Tags {
 		this.ustensils = [];
 	}
 
+	uniq() {
+		Object.keys(this).forEach((key) => {
+			this[key] = [...new Set(this[key])];
+		});
+		return this;
+	}
+
 	populate(recipes) {
 		recipes.forEach((e) => {
 
@@ -45,18 +52,12 @@ class Tags {
 			e.ustensils.forEach((e) => {
 				this.ustensils.push(e);
 			});
-			index.appendChild(cardNode(e));
+			index.appendChild(new cardNode(e));
 		});
-	}
-
-	uniq() {
-		Object.keys(this).forEach((key) => {
-			this[key] = [...new Set(this[key])];
-		});
+		return this;
 	}
 
 	renderFiltersDOM(query = null) {
-		//#:convert to arrow function
 		tagsDrawers.forEach(e => {
 			while (e.firstChild) {
 				e.removeChild(e.firstChild);
@@ -65,12 +66,11 @@ class Tags {
 
 		Object.keys(this).forEach((e, index) => {
 			this[e].forEach((f) => {
-				let node = tagNode(f, index);
-				console.log(node);
-				if (!(oUserQuery[`${css2Apply(index)}UserInput`] === "")) {
-					e.includes(oUserQuery[`${css2Apply(index)}UserInput`]) ? drawers[index].appendChild(node) : false;
+				let input = oUserQuery[`${css2Apply(index)}UserInput`];
+				if (!(input === "")) {
+					f.includes(input) ? drawers[index].appendChild(filterNode(f, index)) : false;
 				} else {
-					drawers[index].appendChild(node);
+					drawers[index].appendChild(filterNode(f, index));
 				}
 			});
 		});
@@ -86,7 +86,8 @@ class UserQuery extends Tags {
 		this.ustUserInput = "";
 		this.searchUserInput = "";
 	}
-	//#:UserQuery => recipe compare, if match return recipe
+
+	//#:UserQuery method to filter list of advanced tags ?
 	renderSelectedFilters() {
 
 	}
@@ -118,15 +119,15 @@ inputs.forEach(e => {
 ingInput.addEventListener("keyup", () => {
 	oUserQuery.ingUserInput = ingInput.value;
 	//#:need to pass tagsAvailable to function
-	renderAdvancedFiltersDom();
+	tagsAvailable.renderFiltersDOM(oUserQuery);
 });
 
 appInput.addEventListener("keyup", () => {
 	oUserQuery.appUserInput = appInput.value;
-	renderAdvancedFiltersDom();
+	tagsAvailable.renderFiltersDOM(oUserQuery);
 });
 
 ustInput.addEventListener("keyup", () => {
 	oUserQuery.ustUserInput = ustInput.value;
-	renderAdvancedFiltersDom();
+	tagsAvailable.renderFiltersDOM(oUserQuery);
 });

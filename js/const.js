@@ -34,7 +34,6 @@ class cardNode {
 	}
 }
 
-//#:change to class filterNode => tagNode extends this & add close button;
 class filterNode  {
 
 	constructor(name, cat) {
@@ -61,11 +60,8 @@ class filterNode  {
 class tagNode extends filterNode {
 	constructor(e, cat) {
 
-		let a = super(e, cat);
-		a = a.cloneNode(true);
-
+		let a = super(e, cat).cloneNode(true);
 		//#:add icon
-
 		a.addEventListener("click", (b) => {
 
 			oUserQuery[`${propApply(cat)}`].includes(e) ?
@@ -76,7 +72,6 @@ class tagNode extends filterNode {
 			outFeed(applyQuery(oUserQuery));
 
 		});
-
 		return a;
 	}
 }

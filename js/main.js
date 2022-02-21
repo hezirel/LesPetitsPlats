@@ -19,9 +19,9 @@ let outFeed = (data) => {
 //¿:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
 
 //All the algorithmic code to filter results happens here
-//€:circumvent useless comparison code if no filters to speed up query
 let applyQuery = (filter = null) => {
 
+	//€:circumvent useless comparison code if no filters to speed up query
 	if (!filter) {
 		return cache;
 	}

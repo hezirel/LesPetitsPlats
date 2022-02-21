@@ -43,6 +43,7 @@ class Tags {
 	}
 
 	populate(recipes) {
+
 		recipes.forEach((e) => {
 
 			e.ingredients.forEach((e) => {
@@ -54,27 +55,28 @@ class Tags {
 			e.ustensils.forEach((e) => {
 				this.ustensils.push(e);
 			});
+
 			index.appendChild(new cardNode(e));
 		});
+
 		return this;
 	}
 
-	renderFilteredDrawer(query, cat) {
-		//€:no need to display tag if already selected
+	renderFilteredDrawer(query = "", cat) {
 		while (drawers[cat].firstChild) {
 			drawers[cat].removeChild(drawers[cat].firstChild);
 		}
 
 		this[propApply(cat)].forEach((e) => {
+			//€:no need to display tag if already selected
 			if (!(oUserQuery[`${propApply(cat)}`].includes(e))) {
-				if (!(query === "")) {
+				
+				query === "" ?
+					drawers[cat].appendChild(new filterNode(e, cat)) :
 					e.includes(query) ? drawers[cat].appendChild(new filterNode(e, cat)) : false;
-				} else {
-					drawers[cat].appendChild(new filterNode(e, cat)); 
-				}
+
 			}
-		}
-		);
+		});
 	} 
 
 	renderFiltersDOM() {

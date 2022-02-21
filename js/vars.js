@@ -59,24 +59,36 @@ class Tags {
 		return this;
 	}
 
-	renderFiltersDOM(query = null) {
-		tagsDrawers.forEach(e => {
-			while (e.firstChild) {
-				e.removeChild(e.firstChild);
-			}
-		});
-
+	renderFiltersDOM() {
 		Object.keys(this).forEach((e, index) => {
+			while (drawers[index].firstChild) {
+				drawers[index].removeChild(drawers[index].firstChild);
+			}
 			this[e].forEach((f) => {
-				let input = oUserQuery[`${css2Apply(index)}UserInput`];
-				if (!(input === "")) {
-					f.includes(input) ? drawers[index].appendChild(new filterNode(f, index)) : false;
-				} else {
+				if (!(oUserQuery[`${propApply(index)}`].includes(f))) {
 					drawers[index].appendChild(new filterNode(f, index));
 				}
 			});
 		});
 	}
+
+	renderFilteredDrawer(query, cat) {
+		//€:no need to display tag if already selected
+		while (drawers[cat].firstChild) {
+			drawers[cat].removeChild(drawers[cat].firstChild);
+		}
+
+		this[propApply(cat)].forEach((e) => {
+			if (!(oUserQuery[`${propApply(cat)}`].includes(e))) {
+				if (!(query === "")) {
+					e.includes(query) ? drawers[cat].appendChild(new filterNode(e, cat)) : false;
+				} else {
+					drawers[cat].appendChild(new filterNode(e, cat)); 
+				}
+			}
+		}
+		);
+	} 
 }
 
 class UserQuery extends Tags {
@@ -87,11 +99,6 @@ class UserQuery extends Tags {
 		this.appUserInput = "";
 		this.ustUserInput = "";
 		this.searchUserInput = "";
-	}
-
-	//#:UserQuery method to render selected tags
-	renderSelectedFilters() {
-
 	}
 }
 
@@ -122,5 +129,6 @@ tagsDisplay.forEach(e => {
 inputs.forEach((i, index) => {
 	i.addEventListener("keyup", () => {
 		oUserQuery[`${css2Apply(index)}UserInput`] = i.value;
-		tagsAvailable.renderFiltersDOM(oUserQuery);});
+		tagsAvailable.renderFilteredDrawer(i.value, index);
+	});
 });

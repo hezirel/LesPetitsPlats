@@ -61,8 +61,17 @@ class tagNode extends filterNode {
 	constructor(e, cat) {
 
 		let a = super(e, cat).cloneNode(true);
-		//#:add icon
-		a.addEventListener("click", (b) => {
+
+		//€:Disable click event for nested a tag
+		a.style["pointer-events"] = "none";
+		let span = document.createElement("span");
+		span.classList.add(`tags${cssApply(cat)}`);
+
+		let icon = document.createElement("i");
+		icon.classList.add("far");
+		icon.classList.add("fa-times-circle");
+
+		span.addEventListener("click", (b) => {
 
 			oUserQuery[`${propApply(cat)}`].includes(e) ?
 				( oUserQuery[`${propApply(cat)}`].splice(oUserQuery[`${propApply(cat)}`].indexOf(e), 1)) : false;
@@ -72,7 +81,10 @@ class tagNode extends filterNode {
 			outFeed(applyQuery(oUserQuery));
 
 		});
-		return a;
+
+		a.appendChild(icon);
+		span.appendChild(a);
+		return span;
 	}
 }
 

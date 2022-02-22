@@ -65,7 +65,7 @@ let applyQuery = (filter = null) => {
 				return true;
 			}
 		}) ? ((fSea.length > 0) ?
-				((cardAdder(fSea, c, aIng)) ?
+				((cardAdder(fSea, ({name: c.name, description: c.description, ingredients: aIng}))) ?
 					list.push(c) : false) :
 				list.push(c)) :
 			false;
@@ -74,6 +74,6 @@ let applyQuery = (filter = null) => {
 };
 
 //#:Function to change for native loop branch
-let cardAdder = (query, recipe, ings) => {
-	return (recipe.name.includes(query) || recipe.description.includes(query) || ings.includes(query));
+let cardAdder = (query, recipe) => {
+	return (recipe.name.includes(query) || recipe.description.includes(query) || recipe.ingredients.includes(query));
 };

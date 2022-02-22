@@ -13,6 +13,7 @@ let outFeed = (data) => {
 	while (index.firstChild) {
 		index.removeChild(index.firstChild);
 	}
+
 	tagsAvailable = new Tags().populate(data).uniq();
 	tagsAvailable.renderFiltersDOM();
 };
@@ -23,7 +24,7 @@ let outFeed = (data) => {
 let applyQuery = (filter = null) => {
 
 	//€:circumvent useless comparison code if no filters to speed up query
-	if (!filter) {
+	if (!(filter) || Object.keys(filter).forEach(e => e.length <= 0)) {
 		return cache;
 	}
 

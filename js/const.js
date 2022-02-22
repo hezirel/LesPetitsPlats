@@ -185,3 +185,10 @@ const propApply = (cat) => {
 	})[cat];
 
 };
+
+const noResults = () => {
+	let x = document.createElement("h1");
+	x.innerText = "Sorry no result match your query ...";
+	x.classList.add("blankFeed");
+	return x;
+};

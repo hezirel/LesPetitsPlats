@@ -146,10 +146,6 @@ body {
     background-color: var(--node-body-bg);
 }
 
-.resultNode {
-    /* max-height: 25vh; */
-}
-
 .resultNodeInfo {
     padding: 1rem;
     padding-top: 0.2rem;
@@ -195,4 +191,8 @@ body {
     text-overflow: ellipsis;
     white-space: normal;
     width: 100%;
+}
+
+.blankFeed {
+    font-family: 'Times New Roman', Times, serif;    
 }

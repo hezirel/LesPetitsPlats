@@ -14,8 +14,12 @@ let outFeed = (data) => {
 		index.removeChild(index.firstChild);
 	}
 
-	tagsAvailable = new Tags().populate(data).uniq();
-	tagsAvailable.renderFiltersDOM();
+	if (!(data.length)) {
+		index.appendChild(noResults());
+	} else {
+		tagsAvailable = new Tags().populate(data).uniq();
+		tagsAvailable.renderFiltersDOM();
+	}
 };
 
 //¿:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
@@ -65,7 +69,11 @@ let applyQuery = (filter = null) => {
 				return true;
 			}
 		}) ? ((fSea.length > 0) ?
-				((cardAdder(fSea, ({name: c.name, description: c.description, ingredients: aIng}))) ?
+				((cardAdder(fSea, ({
+					name: c.name,
+					description: c.description,
+					ingredients: aIng
+				}))) ?
 					list.push(c) : false) :
 				list.push(c)) :
 			false;
@@ -75,5 +83,7 @@ let applyQuery = (filter = null) => {
 
 //#:Function to change for native loop branch
 let cardAdder = (query, recipe) => {
-	return (recipe.name.includes(query) || recipe.description.includes(query) || recipe.ingredients.includes(query));
+
+
+	//return (recipe.name.includes(query) || recipe.description.includes(query) || recipe.ingredients.includes(query));
 };

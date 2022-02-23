@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" description="Project 7 OpenClassrooms recipe search engine">
     <title>Les Petits Plats</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/36102fc3ba.js" crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
         <form class="searchForm">
             <input type="search" class="searchInput" id="mainSearchInput" name="search_input"
                 placeholder="Recherchez un ingrédient, appareil, ustensiles ou une recette">
-            <button class="searchInputSubmit"><i class="far fa-search"></i></button>
+            <button class="searchInputSubmit" aria-label="Main Search Input Submit"><i class="far fa-search"></i></button>
         </form>
     </div>
     <div class="filterSelection" id="#tagsSelection"></div>
@@ -23,7 +23,7 @@
         <div class="filterForm">
             <div class="upperTagsGrid">
                 <input class="tagsIng" id="tagsSearchInputIng" placeholder="Ingrédients" type="search">
-                <button class="tagsIng" type="button">
+                <button class="tagsIng" type="button" aria-label="Ingredient filtering submit">
                     <i class="far fa-chevron-down"></i>
                 </button>
             </div>
@@ -33,7 +33,7 @@
         <div class="filterForm">
             <div class="upperTagsGrid">
                 <input class="tagsApp" id="tagsSearchInputApp" placeholder="Appareil" type="search">
-                <button class="tagsApp" type="button">
+                <button class="tagsApp" type="button" aria-label="Appliance filtering submit">
                     <i class="far fa-chevron-down"></i>
                 </button>
             </div>
@@ -43,7 +43,7 @@
         <div class="filterForm">
             <div class="upperTagsGrid">
                 <input class="tagsUst" id="tagsSearchInputUst" placeholder="Ustensiles" type="search">
-                <button class="tagsUst" type="button">
+                <button class="tagsUst" type="button" aria-label="Ustensils filtering submit">
                     <i class="far fa-chevron-down"></i>
                 </button>
             </div>

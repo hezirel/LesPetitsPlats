@@ -188,13 +188,14 @@ body {
 }
 
 .resultNodeBody>p {
+    display: block;
     align-self: start;
-    max-height: 10vh;
+    max-height: 20vh;
+    max-width: 15vw;
     justify-self: start;
     overflow: hidden;
+    overflow-wrap: break-word;
     text-overflow: ellipsis;
-    white-space: normal;
-    width: 100%;
 }
 
 .blankFeed {

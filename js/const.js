@@ -83,6 +83,7 @@ class tagNode extends filterNode {
 
 		a.style["pointer-events"] = "none";
 		icon.style["pointer-events"] = "none";
+		icon.style["padding"] = "none";
 		span.appendChild(a);
 		span.appendChild(icon);
 		return span;

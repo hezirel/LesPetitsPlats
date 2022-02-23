@@ -59,6 +59,10 @@ body {
     border-top-left-radius: 0;
 }
 
+.filterSelection:empty {
+    display: none;
+}
+
 .filterSelection {
     display: flex;
     gap: 1rem;
@@ -67,9 +71,10 @@ body {
 }
 
 .filterSelection * {
-    padding: 0.5rem;
+    padding: 0.3rem;
     color: white;
     text-decoration: none;
+    border-radius: 10px;
 }
 
 .filterBox {

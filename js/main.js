@@ -1,25 +1,19 @@
 const cacheFill = async () => {
 
 	cache = await dataFetch();
-	outFeed(cache);
+	outFeed(applyQuery(null));
 
 };
 
-let oUserQuery = new UserQuery();
+oUserQuery = new UserQuery();
 window.onload = cacheFill();
 
-let outFeed = (data) => {
+let outFeed = (flag) => {
 
-	while (index.firstChild) {
-		index.removeChild(index.firstChild);
-	}
-
-	if (!(data.length)) {
+	if (!(flag.length)) {
 		index.appendChild(noResults());
-	} else {
-		tagsAvailable = new Tags().populate(data).uniq();
-		tagsAvailable.renderFiltersDOM();
 	}
+
 };
 
 //¿:RenderSelFilters proxy, redraw all oUserQuery.[tags] when modified
@@ -27,56 +21,69 @@ let outFeed = (data) => {
 //All the algorithmic code to filter results happens here
 let applyQuery = (filter = null) => {
 
+	tagsAvailable = new Tags();
+	tagsAvailable.clear();
 	//€:circumvent useless comparison code if no filters to speed up query
 	if (!(filter) || Object.keys(filter).forEach(e => e.length <= 0)) {
-		return cache;
-	}
 
-	let list = [];
+		cache.forEach((e) => {
+			tagsAvailable.populate(e);
+		});
+		tagsAvailable.uniq().renderFiltersDOM();
 
-	let {
-		ingredients: fIng,
-		apparels: fApp,
-		ustensils: fUst,
-		searchUserInput: fSea
-	} = filter;
+		return true;
+	} else {
 
-	let aFilter = [fIng, fApp, fUst];
-
-	cache.forEach(c => {
+		let list = [];
 		let {
-			ingredients,
-			appliance,
-			ustensils
-		} = c;
+			ingredients: fIng,
+			apparels: fApp,
+			ustensils: fUst,
+			searchUserInput: fSea
+		} = filter;
 
-		let aIng = [];
-		ingredients.forEach(e => {
-			aIng.push(e.ingredient);
+		let aFilter = [fIng, fApp, fUst];
+
+		//#:use only one parsing to filter and populate available tags
+
+		cache.forEach(c => {
+			let {
+				ingredients,
+				appliance,
+				ustensils
+			} = c;
+
+			let aIng = [];
+			ingredients.forEach(e => {
+				aIng.push(e.ingredient);
+			});
+
+			//Array from filters.every{1 false return block list.push}
+			//#:refactor for better readability
+			aFilter.every(r => {
+				if (r.length > 0) {
+					return r.every(t => {
+						if (aIng.includes(t) || appliance.includes(t) || ustensils.includes(t)) {
+							return true;
+						} else {
+							return false;
+						}
+					}) ? true : false;
+				} else {
+					return true;
+				}
+			}) ? ((fSea.length > 0) ?
+					((cardAdder(fSea, ({
+						name: c.name,
+						description: c.description,
+						ingredients: aIng
+					}))) ?
+						list.push(tagsAvailable.populate(c)) : false) :
+					list.push(tagsAvailable.populate(c))) :
+				false;
 		});
 
-		//Array from filters.every{1 false return block list.push}
-		aFilter.every(r => {
-			if (r.length > 0) {
-				return r.every(t => {
-					if (aIng.includes(t) || appliance.includes(t) || ustensils.includes(t)) {
-						return true;
-					} else {
-						return false;
-					}
-				}) ? true : false;
-			} else {
-				return true;
-			}
-		}) ? ((fSea.length > 0) ?
-				((cardAdder(fSea, ({
-					name: c.name,
-					description: c.description,
-					ingredients: aIng
-				}))) ?
-					list.push(c) : false) :
-				list.push(c)) :
-			false;
-	});
-	return list;
+		tagsAvailable.uniq().renderFiltersDOM();
+		return list;
+	}
 };

@@ -34,7 +34,7 @@ class cardNode {
 	}
 }
 
-class filterNode  {
+class filterNode {
 
 	constructor(name, cat) {
 
@@ -74,7 +74,7 @@ class tagNode extends filterNode {
 		span.addEventListener("click", (b) => {
 
 			oUserQuery[`${propApply(cat)}`].includes(e) ?
-				( oUserQuery[`${propApply(cat)}`].splice(oUserQuery[`${propApply(cat)}`].indexOf(e), 1)) : false;
+				(oUserQuery[`${propApply(cat)}`].splice(oUserQuery[`${propApply(cat)}`].indexOf(e), 1)) : false;
 
 			b.target.remove(b.target);
 
@@ -96,6 +96,11 @@ class Tags {
 		this.ustensils = [];
 	}
 
+	clear() {
+		while (index.firstChild) {
+			index.removeChild(index.firstChild);
+		}
+	}
 	uniq() {
 		Object.keys(this).forEach((key) => {
 			this[key] = [...new Set(this[key])];
@@ -103,24 +108,19 @@ class Tags {
 		return this;
 	}
 
-	populate(recipes) {
-
-		recipes.forEach((e) => {
-
-			e.ingredients.forEach((e) => {
-				this.ingredients.push(e.ingredient);
-			});
-	
-			this.apparels.push(e.appliance);
-	
-			e.ustensils.forEach((e) => {
-				this.ustensils.push(e);
-			});
-
-			index.appendChild(new cardNode(e));
+	populate(recipe) {
+		recipe.ingredients.forEach((e) => {
+			this.ingredients.push(e.ingredient);
 		});
 
-		return this;
+		this.apparels.push(recipe.appliance);
+
+		recipe.ustensils.forEach((e) => {
+			this.ustensils.push(e);
+		});
+
+		index.appendChild(new cardNode(recipe));
+		return recipe;
 	}
 
 	renderFilteredDrawer(query = "", cat) {
@@ -131,14 +131,14 @@ class Tags {
 		this[propApply(cat)].forEach((e) => {
 			//€:no need to display tag if already selected
 			if (!(oUserQuery[`${propApply(cat)}`].includes(e))) {
-				
+
 				query === "" ?
 					drawers[cat].appendChild(new filterNode(e, cat)) :
 					e.includes(query) ? drawers[cat].appendChild(new filterNode(e, cat)) : false;
 
 			}
 		});
-	} 
+	}
 
 	renderFiltersDOM() {
 		Object.keys(this).forEach((e, index) => {
@@ -167,7 +167,7 @@ const cssApply = (cat) => {
 };
 
 const css2Apply = (cat) => {
-	
+
 	return ({
 		0: "ing",
 		1: "app",

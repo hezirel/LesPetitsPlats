@@ -63,7 +63,6 @@ class tagNode extends filterNode {
 		let a = super(e, cat).cloneNode(true);
 
 		//€:Disable click event for nested a tag
-		a.style["pointer-events"] = "none";
 		let span = document.createElement("span");
 		span.classList.add(`tags${cssApply(cat)}`);
 
@@ -82,8 +81,10 @@ class tagNode extends filterNode {
 
 		});
 
-		a.appendChild(icon);
+		a.style["pointer-events"] = "none";
+		icon.style["pointer-events"] = "none";
 		span.appendChild(a);
+		span.appendChild(icon);
 		return span;
 	}
 }

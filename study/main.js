@@ -12,7 +12,7 @@ let cardTest = (query) => {
 		f({ name: c.name,
 			//€:Testing description: c.description,
 			ingredients: aIng},
-		query);
+		query) ? console.log(c.name) : false;
 	});
 	console.timeEnd();
 
@@ -21,11 +21,10 @@ let cardTest = (query) => {
 //#:Code native loop algo
 let f = (recipe, query) => {
 	
-
-	Object.keys(recipe).forEach(e => {
-		recipe[e].includes(query) ? console.log(recipe[e]) : false;
+	return Object.keys(recipe).some(e => {
+		return recipe[e].includes(query) ? true : false;
 	});
 
-	return true;
-
 };
+
+cardTest("Coco");

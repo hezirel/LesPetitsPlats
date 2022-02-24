@@ -18,7 +18,6 @@ let cardTest = (query) => {
 
 };
 
-//#:Code native loop algo
 let f = (recipe, query) => {
 	
 	return Object.keys(recipe).some(e => {

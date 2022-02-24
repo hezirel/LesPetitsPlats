@@ -136,7 +136,7 @@ class Tags {
 
 				query === "" ?
 					drawers[cat].appendChild(new filterNode(e, cat)) :
-					e.includes(query) ? drawers[cat].appendChild(new filterNode(e, cat)) : false;
+					(e.toLowerCase()).includes(query.toLowerCase()) ? drawers[cat].appendChild(new filterNode(e, cat)) : false;
 
 			}
 		});

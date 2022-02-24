@@ -18,7 +18,7 @@ let strStr = (hay, needle) => {
 let cardAdder = (query, recipe) => {
 	
 	return Object.keys(recipe).some(e => {
-		return strStr(recipe[e].toLowerCase(), query.toLowerCase());
+		return strStr(recipe[e], query);
 	});
 
 };

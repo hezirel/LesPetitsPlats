@@ -71,10 +71,10 @@ let applyQuery = (filter = null) => {
 					return true;
 				}
 			}) ? ((fSea.length > 0) ?
-					((cardAdder(fSea.toLocaleLowerCase(), ({
+					((cardAdder(fSea.toLowerCase(), ({
 						name: c.name.toLowerCase(),
 						description: c.description.toLowerCase(),
-						ingredients: aIng.join(" ").toLocaleLowerCase()
+						ingredients: aIng.join(" ").toLowerCase()
 					}))) ?
 						list.push(tagsAvailable.populate(c)) : false) :
 					list.push(tagsAvailable.populate(c))) :

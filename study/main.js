@@ -18,12 +18,30 @@ let cardTest = (query) => {
 
 };
 
-let f = (recipe, query) => {
+let strStr = (hay, needle) => {
+	
+	let i = 0;
+
+	for (let char of hay) {
+		if (char === needle[i]) {
+			i++;
+		} else if (i === needle.length) {
+			return true;
+		}
+		else {
+			i = 0;
+		}
+	}
+	return false;
+};
+
+let f = (query, recipe) => {
 	
 	return Object.keys(recipe).some(e => {
-		return recipe[e].includes(query) ? true : false;
+		return strStr(recipe[e].toLowerCase(), query.toLowerCase());
 	});
 
 };
+
 
 cardTest("Coco");

@@ -44,8 +44,6 @@ let applyQuery = (filter = null) => {
 
 		let aFilter = [fIng, fApp, fUst];
 
-		//#:use only one parsing to filter and populate available tags
-
 		cache.forEach(c => {
 			let {
 				ingredients,

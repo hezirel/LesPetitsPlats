@@ -74,7 +74,7 @@ let applyQuery = (filter = null) => {
 					((cardAdder(fSea.toLocaleLowerCase(), ({
 						name: c.name.toLowerCase(),
 						description: c.description.toLowerCase(),
-						ingredients: aIng.join(" ").toLocaleLowerCase()
+						ingredients: aIng.join(" ").toLowerCase()
 					}))) ?
 						list.push(tagsAvailable.populate(c)) : false) :
 					list.push(tagsAvailable.populate(c))) :

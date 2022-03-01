@@ -31,7 +31,7 @@ let applyQuery = (filter = null) => {
 		});
 		tagsAvailable.uniq().renderFiltersDOM();
 
-		return true;
+		return cache;
 	} else {
 
 		let list = [];
